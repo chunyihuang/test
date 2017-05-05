@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+
+	<bean id="dataSource"
+		  class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url"
+				  value="jdbc:mysql://120.25.105.195:3306/h5?characterEncoding=utf-8&amp;autoReconnect=true&amp;useSSL=true"/>
+		<property name="username" value="chunyi"/>
+		<property name="password" value="123456"/>
+	</bean>
+
+	<!--  配置hibernate SessionFactory-->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hiberante.format_sql">true</prop>
+				<prop key="current_session_context_class">thread</prop>
+			</props>
+		</property>
+		<!-- 映入映射文件 -->
+		<!-- 包扫描的方式加载注解类(推荐) -->
+		<property name="packagesToScan">
+            <list>
+                <value>com.h5.game.model.bean</value>
+                <value>com.h5.game.model.bean.*</value>
+				<value>com.h5.game.model.bean.*.*</value>
+            </list>
+		</property>
+
+	</bean>
+
+    <!-- 事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+    <!-- AOP切片切入点设定 -->
+	<aop:config>
+		<aop:pointcut id="transactionPointCut" expression="execution(* com.h5.game.services.impl.*.*(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="transactionPointCut"></aop:advisor>
+	</aop:config>
+
+    <!-- 事物通知 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="add*" read-only="false" propagation="REQUIRED"/>
+			<tx:method name="update*" read-only="false" propagation="REQUIRED"/>
+			<tx:method name="insert*" read-only="false" propagation="REQUIRED"/>
+            <tx:method name="modify*" read-only="false" propagation="REQUIRED"/>
+            <tx:method name="delete*" read-only="false" propagation="REQUIRED"/>
+            <tx:method name="del*" read-only="false" propagation="REQUIRED"/>
+            <tx:method name="save*" read-only="false" propagation="REQUIRED"/>
+			<tx:method name="remove*" read-only="false" propagation="REQUIRED"/>
+			<tx:method name="set*" read-only="false" propagation="REQUIRED"/>
+		</tx:attributes>
+	</tx:advice>
+    <!-- 事务代理类 -->
+	<bean id="transactionBese"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
+		lazy-init="true" abstract="true">
+		<property name="transactionManager" ref="transactionManager"></property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="add*">PROPAGATION_REQUIRED,-Exception</prop>
+				<prop key="update*">PROPAGATION_REQUIRED,-Exception</prop>
+				<prop key="insert*">PROPAGATION_REQUIRED,-Exception</prop>
+				<prop key="modify*">PROPAGATION_REQUIRED,-Exception</prop>
+				<prop key="delete*">PROPAGATION_REQUIRED,-Exception</prop>
+				<prop key="del*">PROPAGATION_REQUIRED,-Exception</prop>
+				<prop key="get*">PROPAGATION_NEVER</prop>
+			</props>
+		</property>
+	</bean>
+
+</beans>  

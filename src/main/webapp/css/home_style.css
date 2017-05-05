@@ -1,0 +1,562 @@
+
+/*第一页轮播图精选和推荐样式开始*/
+.section1 {
+	color: white;
+}
+.section1 .title{
+	padding:20px 0px;
+	font-size:18px;
+}
+.section1 .recommendation .img-cont img{
+	width:100%;
+	height:100%;
+}
+.section1 .recommendation .slide{
+	position: relative;
+	box-shadow:0px 0px 7px 0px black;
+	margin-bottom: 30px;
+}
+/*撑开轮播图框架适应响应式*/
+.section1 .recommendation .slide .bg-img{
+	max-height:360px;
+	height: auto;
+	width: 100%;
+	opacity: 0;
+}
+/*大屏幕导航条的样式*/
+.section1 .recommendation .slide .btn{
+	width:45px;
+	line-height:108px;
+	height:108px;
+	font-size:40px;
+	background:linear-gradient(to right,#13212d,transparent);
+	position: absolute;
+	top:50%;
+	margin-top:-54px;
+	z-index:0;
+}
+.section1 .recommendation .slide .btn span{
+	margin-left:-10px;
+}
+.section1 .recommendation .slide .btn.btn-left{
+	left:-45px;
+}
+.section1 .recommendation .slide .btn.btn-right{
+	background:linear-gradient(to left,#13212d,transparent);
+	right:-44px;
+}
+.section1 .recommendation .slide .slide-nav{
+	position: absolute;
+	left: 50%;
+	bottom: -30px;
+	overflow:hidden;
+	margin-left:-33px;
+}
+.section1 .recommendation .slide .slide-nav li{
+	width:18px;
+	height:9px;
+	border-radius:2px;
+	background:#485c6d;
+	float: left;
+	margin:2px;
+	cursor: pointer;
+}
+.section1 .recommendation .slide .slide-nav li.active{
+	background: #93a8b9;
+}
+/*小屏幕导航的样式*/
+.section1 .recommendation .slide .small-screen-slide-nav{
+	width: 100%;
+	height: 30px;
+	background:#131f2c;
+	position: absolute;
+	bottom:-40px;
+	left:0px;
+}
+.section1 .recommendation .slide .small-screen-slide-nav .glyphicon{
+	line-height: 30px;
+	position: relative;
+	top: 0px;
+	font-size:26px;
+	width: 60px;
+	text-align: center;
+	cursor: pointer;
+}
+.section1 .recommendation .slide .small-screen-slide-nav .glyphicon.fl-left:hover{
+	background:linear-gradient(to left,#13212d,rgba(255,255,255,0.2));
+}
+.section1 .recommendation .slide .small-screen-slide-nav span:hover{
+	background:linear-gradient(to right,#13212d,rgba(255,255,255,0.2));
+}
+/*轮播素材的样式*/
+.section1 .recommendation .slide .item{
+	padding: 0px;
+	opacity:0;
+	position:absolute;
+	top:0px;
+	left:0px;
+	transition: all 1s;
+	height:100%;
+}
+.section1 .recommendation .slide .item.active{
+	opacity: 1;
+}
+.section1 .recommendation .slide .item .img-cont{
+	width:610px;
+	float: left;
+	height:100%;
+}
+.section1 .recommendation .slide .item .img-cont img{
+	width:100%;
+	height:100%;
+}
+
+/*调控小屏幕显示的一些细节效果*/
+@media only screen and (min-width:0px) and (max-width:990px) {
+	.section1 .recommendation .slide .item .img-cont{
+		width: 100%;
+	}
+	.container{
+		padding:0px 4px !important;
+	}
+}
+.section1 .recommendation .slide .item .text{
+	width: 330px;
+	height:360px;
+	background:url(../img/slide_bg.jpg);
+	background-size: 100% 100%;
+	float: left;
+	padding-top: 30px;
+	position: relative;
+	cursor: pointer;
+	z-index: 1;
+}
+.section1 .recommendation .slide .item .text p,
+.section1 .recommendation .slide .item .text h1,
+.section1 .recommendation .slide .item .text h3{
+	font-size: 24px;
+	line-height:36px;
+	padding:0px 10px;
+}
+.section1 .recommendation .slide .item .text span{
+	font-size: 12px;
+}
+.section1 .recommendation .slide .item .text .text-img{
+	overflow: hidden;
+	padding: 5px;
+}
+.section1 .recommendation .slide .item .text .text-img .img-cont{
+	width:150px;
+	margin:5px;
+	height:80px;
+	float:left;
+	position: relative;
+}
+.section1 .recommendation .slide .item .text .text-img .img-cont:hover .cover{
+	display: none;
+}
+.section1 .recommendation .slide .item .text .text-bottom{
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	padding-left:10px;
+	line-height:36px;
+}
+.section1 .recommendation .slide .item .text:hover .text-more{
+	display: block;
+}
+.section1 .text-more{
+	width:240px;
+	padding: 15px;
+	position: absolute;
+	top:10px;
+	right:-250px;
+	color:#333537;
+	background:#c7d0d9;
+	display: none;
+}
+.section1  .text-more .glyphicon{
+	position: absolute;
+	top:30px;
+	left:-17px;
+	color:#c7d0d9;
+	font-size:24px;
+}
+.section1  .text-more h5{
+	font-size: 11px;
+	line-height: 20px;
+}
+.section1  .text-more p{
+	font-size:12px !important;
+	line-height: normal !important;
+	padding: 10px 0px;
+}
+.section1 .text-more .score{
+	margin: 5px auto;
+}
+.section1 .text-more .game-label span{
+	background:gray;
+	padding: 2px 5px;
+}
+/*第一页折扣商品*/
+.section1 .discount{
+}
+.section1 .discount .row{
+}
+.section1 .discount .col-lg-4{
+	position: relative;
+	margin:5px auto;
+	padding: 5px;
+}
+.section1 .discount .col-lg-4 .cont{
+	width: 100%;
+	max-width: 325px;
+	margin: auto;
+	position: relative;
+	box-shadow:0px 0px 3px 0px black;
+}
+.section1 .discount .col-lg-4 .text-more-show{
+	box-shadow:0px 0px 3px 0px black;
+}
+.section1 .discount .col-lg-4 .text-more-show:hover .text-more{
+	z-index: 2;
+	display: block;
+}
+.section1 .discount .col-lg-4 img{
+	width: 100%;
+}
+.section1 .discount .col-lg-4 .text{
+	position: absolute;
+	width:100%;
+	bottom:0px;
+	left:0px;
+	background: url(../img/background_spotlight.jpg);
+	background-size: 100% 100%;
+	padding: 10px;
+}
+.section1 .discount .col-lg-4 .text h1{
+	font-size: 16px;
+	line-height: 24px;
+}
+.section1 .discount .col-lg-4 .text p{
+	font-size: 12px;
+	line-height: 20px;
+	color:#5c99bd;
+}
+.section1 .discount .col-lg-4 .text .discount-price{
+	overflow: hidden;
+	height: 36px;
+}
+.section1 .discount .col-lg-4 .text .discount-price strong{
+	float: left;
+	font-size: 18px;
+	background: #4c6b22;
+	color: #95c750;
+	line-height: 36px;
+	padding: 0px 5px;
+}
+.section1 .discount .col-lg-4 .text .discount-price .price{
+	float: left;
+	background: #0c2d3c;
+	height: 100%;
+	padding:0px 5px;
+	text-align: center;
+}
+.section1 .discount .col-lg-4 .text em{
+	color: #66889a;
+	font-size: 12px;
+	display: block;
+	text-decoration: line-through;
+}
+.section1 .discount .discount-today .pro.top{
+	margin-bottom:15px;
+}
+.section1 .discount .discount-today .pro{
+	height:165px;
+	background: red;
+	position: relative;
+}
+.section1 .discount .discount-today .pro p{
+	font-size: 11px;
+	line-height: normal;
+	color: darkgray;
+}
+.section1 .discount .discount-today .pro .time{
+	font-size: 12px;
+	line-height:20px;
+}
+.section1 .discount .discount-today .pro .text{
+	padding: 5px;
+}
+
+/*第一页的浏览导航*/
+.section1 .scan-nav .col-lg-3{
+	border-radius:5px;
+	margin: 10px 0px;
+}
+.section1 .scan-nav a{
+	display: block;
+	width: 100%;
+	text-align: center;
+	height: 60px;
+	line-height: 60px;
+	position: relative;
+	background:url(../img/background_spotlight.jpg);
+	background-size: 100% 100%;
+	color: #38b2ed;
+	margin: auto;
+	max-width: 205px;
+	box-shadow:0px 0px 3px 0px black;
+}
+.section1 .scan-nav a:hover .cover{
+	display: none;
+}
+.section1 .scan-nav a .cover{
+	background: rgba(0,0,0,0.3);
+}
+/*第一页的大玩家说*/
+.section1 .player-comment .row:first-child{
+	margin-bottom:20px;
+}
+.section1 .player-comment .col-lg-4{
+	padding:4px;
+}
+.section1 .player-comment .col-lg-4 a{
+	display: block;
+	width:100%;
+	max-width:300px;
+	margin: auto;
+	position: relative;
+	height:90px;
+	padding:10px;
+	text-align: center;
+	background: linear-gradient(to right,#416a8b,#1b2838);
+}
+.section1 .player-comment .col-lg-4 a:hover .cover{
+	display:  none;
+}
+.section1 .player-comment .col-lg-4 a .cover{
+	background: rgba(0,0,0,0.2);
+}
+.section1 .player-comment a .img-cont{
+	float:left;
+	width:40px;
+}
+.section1 .player-comment a  .text{
+	float:right;
+	text-align: left;
+	width: 210px;
+	color: #54b6e9;
+}
+.section1 .player-comment a  .text h3{
+	font-size:20px;
+	color: white;
+}
+/*第一页热门游戏部分*/
+.section2{
+	padding-top: 20px;
+	background-size: 200% 200%;
+	position: relative;
+}
+.section2 .hot-game{
+	position: relative;
+}
+.section2 .hot-game .col-lg-12{
+	padding:0px;
+	position: relative;
+}
+.section2 .hot-game .hot-game-nav{
+	position: absolute;
+	top:-54px;
+	left: 0px;
+}
+.section2 .hot-game .hot-game-nav li{
+	float: left;
+	padding: 8px 10px;
+	cursor: pointer;
+	color:#407faa;
+}
+.section2 .hot-game .hot-game-nav li.active{
+	background: #173d57;
+	color: white;
+}
+.section2 .hot-game .item-level-one{
+	display: none;
+}
+.section2 .hot-game .item-level-one.active{
+	display: block;
+}
+.section2 .hot-game .col-lg-8{
+	padding: 0px;
+	padding-right:20px;
+}
+.section2 .hot-game .col-lg-4{
+	background:#9ac0d7;
+	padding: 0px;
+}
+.section2 .hot-game .hot-game-more{
+	width: 100%;
+	background: #102636;
+	padding:10px 20px;
+	color:white;
+	text-align: right;
+	font-size:12px;
+	margin-bottom: 30px;
+}
+.section2 .hot-game .hot-game-more a{
+	padding: 2px 10px;
+	border: 1px solid white;
+	color: whitesmoke;
+	border-radius: 2px;
+	text-decoration: none;
+}
+.section2 .hot-game .gametype{
+	width: 100%;
+	overflow: hidden;
+	color: white;
+}
+
+.section2 .hot-game .gametype a{
+	color:#e4eaee;
+}
+.section2 .hot-game .gametype li{
+	margin-bottom:5px;
+	overflow: hidden;
+	background: #102636;
+	height: 70px;
+}
+.section2 .hot-game .gametype li.active{
+	background:#9ac0d7;
+}
+.section2 .hot-game .gametype li.active a{
+	color: black;
+}
+.section2 .hot-game .gametype li .img-cont{
+	width:30%;
+	height:100%;
+	line-height:70px;
+}
+.section2 .hot-game .img-cont img{
+	width: 100%;
+	height:100%;
+	float: left;
+}
+.section2 .hot-game .gametype li .text{
+	padding:10px 15px;
+	width:70%;
+	height: 100%;
+}
+.section2 .hot-game .gametype li .text .word{
+	width: 70%;
+}
+.section2 .hot-game .gametype li .text .word h3{
+	font-size: 13px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.section2 .hot-game .gametype li .text .word span{
+	font-size:12px;
+	color: gray;
+}
+.section2 .hot-game .gametype li .text .price{
+	width:30%;
+}
+.section2 .hot-game .gametype li .text .price strong{
+	padding:2px 5px;
+	margin-top: 10px;
+	color: #84a914;
+	background: #4c6b22;
+	font-size: 14px;
+}
+.section2 .hot-game .gametype li .text .price .price-new{
+	width:30%;
+	padding-top:5px;
+	text-align: right;
+}
+.section2 .hot-game .gametype li .text .price .price-new span{
+	font-weight: bold;
+	color: #6da8d5;
+}
+/*在小屏幕价格显示的风格*/
+.section2 .hot-game .gametype li .text .price .price-new em{
+	font-size: 11px;
+	color: #21689e;
+	text-decoration: line-through;
+}
+@media only screen and (min-width: 100px) and (max-width: 640px) {
+	.section2 .hot-game .gametype li .text .price strong{
+		padding: 0px 2px;
+		margin-top: 0px;
+		font-size: 12px;
+		float: right;
+	}
+	.section2 .hot-game .gametype li .text .price .price-new{
+		width: 100%;
+		padding: 0px;
+		text-align:right;
+	}
+	.section2 .hot-game .gametype .img-cont img{
+		width: 100%;
+		height: auto;
+		float: none;
+		max-height:70px;
+	}
+}
+.section2 .hot-game .game-details li{
+	padding:10px;
+	position: relative;
+	display: none;
+	height:745px;
+}
+.section2 .hot-game .game-details li.active{
+	display: block;
+}
+.section2 .hot-game .game-details li h3{
+	font-size: 18px;
+	line-height:30px;
+	color: black;
+}
+.section2 .hot-game .game-details li .score{
+	width: 100%;
+	background: #506678;
+	color:lightgray;
+	padding: 5px;
+	border-radius:2px;
+	font-size: 12px;
+}
+.section2 .hot-game .game-details li .score strong{
+	color:deepskyblue;
+}
+.section2 .hot-game .game-details li .game-label{
+	height: 34px;
+	line-height: 34px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.section2 .hot-game .game-details li .game-label span{
+	padding:2px 5px;
+	background:#506678;
+	color:lightgray;
+	border-radius:2px;
+	font-size: 11px;
+	cursor: pointer;
+}
+.section2 .hot-game .game-details li .img-cont{
+	width:100%;
+	height:150px;
+	margin: 2px 0px;
+}
+.section2 .hot-game .game-details li .img-cont img{
+	width: 100%;
+}
+.section2 .hot-game .game-details li .aisle{
+	width: 30px;
+	height: 70px;
+	background:#9ac0d7;
+	position: absolute;
+	top: 0px;
+	left: -30px;
+}
+

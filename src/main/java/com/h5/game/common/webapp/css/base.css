@@ -1,0 +1,45 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong{
+	font-weight: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol{
+	margin: 0;
+	font-weight: normal;
+}
+
+ul,
+ol {
+	list-style: none;
+	padding: 0;
+}
+
+a {
+	text-decoration:none;
+	color: #3a3a3a;
+}
+
+em {
+	
+	font-style: normal;
+}
+body{
+	margin: 0;
+}
+input{
+	margin: 0;
+	padding: 0;
+}

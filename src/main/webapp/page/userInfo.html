@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>个人中心</title>
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/base.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/public.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/header.css"/>
+		<style type="text/css">
+			.img-cont img{
+				width: 100%;
+				height: 100%;
+			}
+			.bg-2e3472{
+				background:#2e3472;
+			}
+			.section-photo .row{
+				padding: 30px 0px 100px 0px;
+				background: url(../img/phto_bg.png) no-repeat no-repeat;
+				background-size: 100% 100%;
+			}
+			.section-photo .row .img-cont{
+				width: 145px;
+				height: 145px;
+				border: 5px solid #9aa0d6;
+				background:#9aa0d6;
+				margin: auto;
+			}
+			.section-photo .row .img-cont img{
+				width: 100%;
+				height: 100%;
+			}
+			.section-photo .row  .user-name{
+				width: 300px;
+				margin: auto;
+				color: white;
+			}
+			.section-photo .row  .user-name .name{
+				margin-left: 80px;
+				font-size:3rem ;
+			}
+			.section-body .about-me .top{
+				padding:5px 0px;
+			}
+			.section-body .about-me .top a{
+				display: inline-block;
+				color: white;
+				font-size: 20px;
+				text-decoration: none;
+				padding: 0px 30px;
+				position: relative;
+			}
+			.section-body .about-me .top a:after{
+				content:'';
+				height:70%;
+				width: 1px;
+				background: rgba(255,255,255,0.6);
+				position: absolute;
+				top:8px;
+				right:0px;
+			}
+			.section-body .about-me .top a:last-child:after{
+				height: 0px;
+			}
+			.section-body .about-me .top a p{
+				color: rgba(255,255,255,0.6);
+				font-size: 12px;
+			}
+			.section-body .about-me .user{
+				width:100%;
+				color: #FFFFFF;
+			}
+			.section-body .about-me .user .cont{
+				box-sizing: border-box;
+				padding: 15px;
+			}
+			.section-body .about-me .user .cont span{
+				background: #dc6d1e;
+				padding: 2px 5px;
+			}
+			.section-body .about-me .user .img-cont{
+				width:70px;
+				height:70px;
+				margin-right: 20px;
+			}
+			.section-body .about-me .user a{
+				display: block;
+				width: 100%;
+				height:60px;
+				line-height: 60px;
+				text-align: center;
+				color: #FFFFFF;
+				border-top: 1px solid #FFFFFF;
+				text-decoration: none;
+			}
+			.section-body .about-me .upload-game{
+				height: 70px;
+				width: 100%;
+				background: #70a934;
+				line-height: 70px;
+				text-align: center;
+				border: none;
+				font-size: 16px;
+				color: #FFFFFF;
+			}
+			.section-body .about-me .mygame h3{
+				width: 100%;
+				height: 70px;
+				line-height: 70px;
+				text-align: center;
+				color: rgba(255,255,255,0.6);
+				border-bottom: 1px solid #FFFFFF;
+			}
+			.section-body .about-me .mygame .game-list{
+				width: 100%;
+				height: 185px;
+				box-sizing: border-box;
+				padding: 5px 0px;
+				overflow: hidden;
+			}
+			.section-body .about-me .mygame .game-list li{
+				float: left;
+				height: 50%;
+				width: 50%;
+				box-sizing: border-box;
+				padding: 2px;
+			}
+			.section-body .about-me .mygame .game-list li .img-cont{
+				width: 100%;
+				height: 100%;
+			}
+			.section-body .about-me .mygame a{
+				display: block;
+				width: 100%;
+				height: 44px;
+				line-height: 44px;
+				text-align: center;
+				color: rgba(255,255,255,0.6);
+				border-top: 1px solid #FFFFFF;
+			}
+			
+			.section-body .myfootprint{
+				color: #FFFFFF;
+				width: 100%;
+			}
+			.section-body .myfootprint .top{
+				height:  55px;
+				line-height: 55px;
+				padding: 0px 15px;
+			}
+			.section-body .myfootprint .content li{
+				margin-bottom: 10px;
+			}
+			.section-body .myfootprint .content .user{
+				padding: 10px;
+			}
+			.section-body .myfootprint .content .user .img-cont{
+				height: 50px;
+				width: 50px;
+				margin-right: 10px;
+			}
+			.section-body .myfootprint .content .user h3{
+				line-height: 30px;
+				font-size: 18px;
+			}
+			.section-body .myfootprint .content .user em{
+				line-height: 20px;
+				font-size: 12px;
+				color: rgba(255,255,255,0.6);
+			}
+			.section-body .myfootprint .content .game-info{
+				background: #5d6083;
+				padding: 15px 15px 0px 70px;
+			}
+			.section-body .myfootprint .content .game-info h3{
+				font-size: 18px;
+				color: rgba(255,255,255,0.6);
+			}
+			.section-body .myfootprint .content .game-info .game-pic .fl{
+				width:60%;
+				box-sizing: border-box;
+			}
+			.section-body .myfootprint .content .game-info .game-pic .fl:last-child{
+				width: 40%;
+				box-sizing: border-box;
+			}
+			.section-body .myfootprint .content .game-info .game-pic .fl.left .img-cont{
+				height: 200px;
+				padding-right: 5px;
+			}
+			.section-body .myfootprint .content .game-info .game-pic .fl .img-cont{
+				width: 100%;
+				height:100px;
+				padding: 2px;
+			}
+			.section-body .myfootprint .content .game-info .game-about{
+				line-height: 40px;
+			}
+			.section-body .myfootprint .content .game-info .game-about em{
+				font-size: 12px;
+				color: rgba(255,255,255,0.6);
+			}
+			.section-body .myfootprint .content .game-info .game-about a{
+				text-decoration: none;
+				color: rgba(255,255,255,0.6);
+				margin-right: 20px;
+			}
+			.section-body .myfootprint .content .contro{
+				line-height: 40px;
+			}
+			.section-body .myfootprint .content .contro a{
+				font-size: 15px;
+				color: #FFFFFF;
+				margin: 0px 30px;
+				text-decoration: none;
+			}
+			
+			.section-body .edit-userinfo .top{
+				color: #FFFFFF;
+				font-size: 20px;
+				padding:10px;
+			}
+			.section-body .edit-userinfo .top span{
+				display: inline-block;
+				width:50%;
+				height: 1px;
+				background: rgba(255,255,255,0.6);
+				position: relative;
+				top: -3px;
+				left: 0px;
+				margin: 0px 10px;
+			}
+			.section-body .edit-userinfo .top button{
+				border: none;
+				background:rgba(255,255,255,0.6);
+				color: black;
+				font-size: 14px;
+				padding:2px 5px;
+			}
+			.section-body .edit-userinfo .form{
+				color: rgba(255,255,255,0.5);
+				padding: 50px 0px;
+			}
+			.section-body .edit-userinfo .form label{
+				width: 100px;
+				text-align: right;
+				margin-right: 40px;
+			}
+			.section-body .edit-userinfo .form input{
+				background: transparent;
+				border: none;
+			}
+			.section-body .edit-userinfo .form li{
+				margin-bottom: 15px;
+			}
+			.section-body .edit-userinfo .form a{
+				color: #5d881c;
+			}
+			.section-body .about-me .level-info{
+				width: 100%;
+			}
+			.section-body .about-me .level-info .cont{
+				box-sizing: border-box;
+				padding: 15px;
+				color:rgba(255,255,255,0.8);
+			}
+			.section-body .about-me .level-info .cont:first-child{
+				border-bottom: 1px solid #FFFFFF;
+			}
+			.section-body .about-me .level-info .cont span{
+				background: #DC6D1E;
+				padding: 2px 5px;
+			}
+		</style>
+	</head>
+	<body>
+		<section class="container-fluid section1" id="section0">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 col-md-12 section1-nav">
+						<ul class="fl-left menu-level-one">
+							<li class="item-level-one">
+								<a href="../index.html">
+									平台首页
+								</a>
+								<!--<span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+								<ul class="menu-level-two">
+									<li>
+										<a href="#">商店主页</a>
+									</li>
+									<li>
+										<a href="#">最近查看过的</a>
+									</li>
+									<li>
+										<a href="#">最近更新</a>
+									</li>
+								</ul>-->
+							</li>
+							<li class="item-level-one">
+								<a href="#">
+									游戏
+								</a>
+								<span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+								<ul class="menu-level-two">
+									<li>
+										<a href="#">免费</a>
+									</li>
+									<li>
+										<a href="#">抢先体验</a>
+									</li>
+									<li>
+										<a href="#">试玩</a>
+									</li>
+									<p>按类型浏览：</p>
+									<li>
+										<a href="#">休闲</a>
+									</li>
+									<li>
+										<a href="#">体育</a>
+									</li>
+									<li>
+										<a href="#">冒险</a>
+									</li>
+									<li>
+										<a href="#">动作</a>
+									</li>
+									<li>
+										<a href="#">大型多人在线</a>
+									</li>
+									<li>
+										<a href="#">模拟</a>
+									</li>
+									<li>
+										<a href="#">独立</a>
+									</li>
+									<li>
+										<a href="#">竞速</a>
+									</li>
+									<li>
+										<a href="#">策略</a>
+									</li>
+									<li>
+										<a href="#">角色扮演</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">
+									校园动态
+								</a>
+							</li>
+							<li>
+								<a id="person" href="../login.html">
+									个人中心
+								</a>
+							</li>
+						</ul>
+						<div class="msg fl-right ml10" id="login-stauts">
+							<a href="../login.html">登录</a>|<a href="../register.html">注册</a>
+						</div>
+						<div class="fl-right">
+							<input type="text" name="" id="" value="" placeholder="搜索游戏" />
+							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section class="container-fluid section-photo mt20">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="img-cont">
+						<img src="../img/phto.png"/>
+					</div>
+					<div class="user-name pt20">
+						<span class="name">boom卷卷</span>
+						<span class="sex">女</span>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<section class="container-fluid section-body mt20">
+			<div class="row">
+				<div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
+					<div class="about-me">
+						<div class="top ftc bg-2e3472 t1">
+							<a href="#">
+								<span>20</span>
+								<p>下载</p>
+							</a>
+							<a href="#">
+								<span>30</span>
+								<p>点赞</p>
+							</a>
+							<a href="#">
+								<span>34</span>
+								<p>评论</p>
+							</a>
+						</div>
+						<div class="user mt20 bg-2e3472 t1">
+							<div class="cont clearfix">
+								<div class="img-cont fl">
+									<img src="../img/phto.png"/>
+								</div>
+								<div class="right fl">
+									<h3 class="mb20">boom向卷卷</h3>
+									<span>Lv.6</span>
+								</div>
+							</div>
+							<a id="beginedit">编辑个人资料</a>
+						</div>
+						<button class="upload-game mt10 t1" >
+							<a href="uploadgame.html">
+								上传游戏
+							</a>
+						</button>
+						<div class="mygame bg-2e3472 mt20 t1">
+							<h3>已上传游戏</h3>
+							<ul class="game-list">
+								<li>
+									<div class="img-cont">
+										<img src="../img/capsule_1_1.jpg"/>
+									</div>
+								</li>
+								<li>
+									<div class="img-cont">
+										<img src="../img/capsule_1_1.jpg"/>
+									</div>
+								</li>
+								<li>
+									<div class="img-cont">
+										<img src="../img/capsule_1_1.jpg"/>
+									</div>
+								</li>
+								<li>
+									<div class="img-cont">
+										<img src="../img/capsule_1_1.jpg"/>
+									</div>
+								</li>
+							</ul>
+							<a href="#">查看更多>></a>
+						</div>
+						<div class="level-info bg-2e3472 mt20 hide">
+							<div class="cont">
+								<h3 class="mb20">boom向卷卷</h3>
+								<span>Lv.6</span>
+							</div>
+							<div class="cont">
+								<p>当前等级：Lv.6</p>
+								<p>当前积分：20</p>
+								<p>当前排行：500</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-8 col-md-8 col-xs-8 col-sm-8">
+					<div class="myfootprint">
+						<div class="top bg-2e3472">
+							我的足迹
+						</div>
+						<ul class="content mt20">
+							<li class="bg-2e3472">
+								<div class="user clearfix">
+									<div class="img-cont fl">
+										<img src="../img/phto.png"/>
+									</div>
+									<div class="right fl">
+										<h3>boom卷卷</h3>
+										<em>2017-1-7 09:40</em>
+									</div>
+								</div>
+								<div class="game-info">
+									<h3>DARS SOULS</h3>
+									<div class="game-pic clearfix">
+										<div class="fl left">
+											<div class="img-cont">
+												<img src="../img/capsule_2_4.jpg"/>
+											</div>
+										</div>
+										<div class="fl">
+											<div class="img-cont">
+												<img src="../img/capsule_1_2.jpg"/>
+											</div>
+											<div class="img-cont">
+												<img src="../img/capsule_2.jpg"/>
+											</div>
+										</div>
+									</div>
+									<div class="game-about">
+										<em>2017-12-1 10:20</em>
+										<div class="fr">
+											<a href="#">
+												<span class="glyphicon glyphicon-comment"></span>
+												22
+											</a>
+											<a href="#">
+												<span class="glyphicon glyphicon-thumbs-up"></span>
+												22
+											</a>
+										</div>
+									</div>
+								</div>
+								<div class="contro ftc bg-2e3472">
+									<a href="#">
+										<span class="glyphicon glyphicon-comment"></span>
+										评论
+									</a>
+									<a href="#">
+										<span class="glyphicon glyphicon-thumbs-up"></span>
+										点赞
+									</a>
+								</div>
+							</li>
+							<li class="bg-2e3472">
+								<div class="user clearfix">
+									<div class="img-cont fl">
+										<img src="../img/phto.png"/>
+									</div>
+									<div class="right fl">
+										<h3>boom卷卷</h3>
+										<em>2017-1-7 09:40</em>
+									</div>
+								</div>
+								<div class="game-info">
+									<h3>DARS SOULS</h3>
+									<div class="game-pic clearfix">
+										<div class="fl left">
+											<div class="img-cont">
+												<img src="../img/capsule_2_4.jpg"/>
+											</div>
+										</div>
+										<div class="fl">
+											<div class="img-cont">
+												<img src="../img/capsule_1_2.jpg"/>
+											</div>
+											<div class="img-cont">
+												<img src="../img/capsule_2.jpg"/>
+											</div>
+										</div>
+									</div>
+									<div class="game-about">
+										<em>2017-12-1 10:20</em>
+										<div class="fr">
+											<a href="#">
+												<span class="glyphicon glyphicon-comment"></span>
+												22
+											</a>
+											<a href="#">
+												<span class="glyphicon glyphicon-thumbs-up"></span>
+												22
+											</a>
+										</div>
+									</div>
+								</div>
+								<div class="contro ftc bg-2e3472">
+									<a href="#">
+										<span class="glyphicon glyphicon-comment"></span>
+										评论
+									</a>
+									<a href="#">
+										<span class="glyphicon glyphicon-thumbs-up"></span>
+										点赞
+									</a>
+								</div>
+							</li>
+							<li class="bg-2e3472">
+								<div class="user clearfix">
+									<div class="img-cont fl">
+										<img src="../img/phto.png"/>
+									</div>
+									<div class="right fl">
+										<h3>boom卷卷</h3>
+										<em>2017-1-7 09:40</em>
+									</div>
+								</div>
+								<div class="game-info">
+									<h3>DARS SOULS</h3>
+									<div class="game-pic clearfix">
+										<div class="fl left">
+											<div class="img-cont">
+												<img src="../img/capsule_2_4.jpg"/>
+											</div>
+										</div>
+										<div class="fl">
+											<div class="img-cont">
+												<img src="../img/capsule_1_2.jpg"/>
+											</div>
+											<div class="img-cont">
+												<img src="../img/capsule_2.jpg"/>
+											</div>
+										</div>
+									</div>
+									<div class="game-about">
+										<em>2017-12-1 10:20</em>
+										<div class="fr">
+											<a href="#">
+												<span class="glyphicon glyphicon-comment"></span>
+												22
+											</a>
+											<a href="#">
+												<span class="glyphicon glyphicon-thumbs-up"></span>
+												22
+											</a>
+										</div>
+									</div>
+								</div>
+								<div class="contro ftc bg-2e3472">
+									<a href="#">
+										<span class="glyphicon glyphicon-comment"></span>
+										评论
+									</a>
+									<a href="#">
+										<span class="glyphicon glyphicon-thumbs-up"></span>
+										点赞
+									</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="edit-userinfo bg-2e3472 hide">
+						<div class="top">
+							<em>个人信息</em>
+							<span class="line"></span>
+							<button>编辑</button>
+						</div>
+						<ul class="form">
+							<li>
+								<label>用户名</label>
+								<input disabled="disabled" type="text" name="" id="" value="boom向卷卷" />
+								<a href="#">修改密码</a>
+							</li>
+							<li>
+								<label>性别</label>
+								<input disabled="disabled" type="text" name="" id="" value="女" />
+						        <!--<input type="radio" name="sex" id="boy" />男
+						        <input checked="checked" type="radio" name="sex" id="girl" />女-->
+							</li>
+							<li>
+								<label>邮箱</label>
+								<input disabled="disabled" type="text" name="" id="" value="980868500@qq.com" />
+							</li>
+							<li>
+								<label>微信号</label>
+								<input disabled="disabled" type="text" name="" id="" value="xj980868500" />
+							</li>
+						</ul>
+							
+					</div>
+				</div>
+			</div>
+		</section>
+		
+	</body>
+	<script src="../js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../admin/assets/js/cookie.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/public.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$('#beginedit').on('click',function(){
+			$('.about-me .t1').addClass('hide');
+			$('.about-me .level-info').removeClass('hide');
+			$('.myfootprint').addClass('hide');
+			$('.edit-userinfo').removeClass('hide');
+		});
+		console.log(getCookie('userId'));
+		$.ajax({
+			type:"get",
+			url:"/player/getUser",
+			async:true,
+			data:{
+                "id":getCookie('userId')
+            },
+            success : function(result) {
+                console.log(result);
+                if ( result.status ){
+                	
+                } else {
+                }
+            }
+		});
+	</script>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>登录</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+		<link rel="stylesheet" type="text/css" href="css/base.css"/>
+		<link rel="stylesheet" type="text/css" href="css/public.css"/>
+		<link rel="stylesheet" type="text/css" href="css/header.css"/>
+		<style type="text/css">
+			section{
+				color: #c6d4df;
+			}
+			section h1{
+			}
+			section .form-cont{
+				width: 600px;
+				margin:auto;
+				padding: 20px 40px;
+				background:#12354b;
+				overflow:hidden;
+			}
+			section .form-cont .col-lg-12{
+				padding: 0px;
+				border-bottom: 1px solid gray;
+				padding:17px 0px;
+			}
+			section .form-cont .col-lg-12 span{
+				color: red;
+			}
+			section .form-cont .col-lg-12.no-border{
+				padding-bottom: 0px;
+			}
+			section p{
+				line-height: 24px;
+			}
+			section input{
+				outline: none;
+				color: white;
+				width: 222px;
+				border-radius: 3px;
+				background: black;
+				border: none;
+				padding: 5px 3px;
+				box-shadow: 0px 0px 2px 0px white inset;
+			}
+			section .submit{
+				width:60px;
+				padding:8px;
+				cursor: pointer;
+			}
+			.errorInfo{
+				display:none;
+			}
+		</style>
+	</head>
+	<body>
+		<section class="container-fluid section1 mb20" id="section0">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 col-md-12 section1-nav">
+						<ul class="fl-left menu-level-one">
+							<li class="item-level-one">
+								<a href="#">
+									您的商店
+								</a>
+								<span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+								<ul class="menu-level-two">
+									<li>
+										<a href="#">商店主页</a>
+									</li>
+									<li>
+										<a href="#">最近查看过的</a>
+									</li>
+									<li>
+										<a href="#">最近更新</a>
+									</li>
+								</ul>
+							</li>
+							<li class="item-level-one">
+								<a href="#">
+									游戏
+								</a>
+								<span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+								<ul class="menu-level-two">
+									<li>
+										<a href="#">免费</a>
+									</li>
+									<li>
+										<a href="#">抢先体验</a>
+									</li>
+									<li>
+										<a href="#">试玩</a>
+									</li>
+									<p>按类型浏览：</p>
+									<li>
+										<a href="#">休闲</a>
+									</li>
+									<li>
+										<a href="#">体育</a>
+									</li>
+									<li>
+										<a href="#">冒险</a>
+									</li>
+									<li>
+										<a href="#">动作</a>
+									</li>
+									<li>
+										<a href="#">大型多人在线</a>
+									</li>
+									<li>
+										<a href="#">模拟</a>
+									</li>
+									<li>
+										<a href="#">独立</a>
+									</li>
+									<li>
+										<a href="#">竞速</a>
+									</li>
+									<li>
+										<a href="#">策略</a>
+									</li>
+									<li>
+										<a href="#">角色扮演</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">
+									校园动态
+								</a>
+							</li>
+							<li>
+								<a id="person">
+									个人中心
+								</a>
+							</li>
+						</ul>
+						<div class="msg fl-right ml10">
+							<a href="login.html">登录</a>
+							|
+							<a href="register.html">注册</a>
+						</div>
+						<div class="fl-right">
+							<input type="text" name="" id="" value="" placeholder="搜索游戏" />
+							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		
+		<section class="container-fluid mt20">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="form-cont">
+							<form action="" method="post">
+								<div class="col-lg-12 no-border">
+									<h3>登录</h3>
+								</div>
+								<div class="col-lg-12">
+									<p>游戏平台账户名称</p>
+									<input type="text" switch='true' name="userName" id="userName" value="" />
+									<span></span>
+								</div>
+								<div class="col-lg-12 no-border">
+									<p>密码</p>
+									<input type="password" switch='true' name="password" id="password" value="" />
+								</div>
+								<div class="col-lg-12">
+									<input class="submit" switch='true' value="登录" id="login"/>
+									<span id="errorInfo" class="errorInfo">密码错误！</span>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</body>
+	<script src="js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="./admin/assets/js/cookie.js"></script>
+	<script>
+		$('body').css('height',$(window).height());
+        $("#login").click(function () {
+            $.ajax({
+                type : "get",
+                url : "/player/login",
+                data : {
+                    "userName":$("#userName").val(),
+                    "password":$("#password").val()
+                },
+                success : function(result) {
+                    console.log(result);
+                    if ( result.status ) {
+                        setCookie("userToken",result.token);
+                        setCookie("userName",result.detail.userName);
+                        $("#errorInfo").addClass("errorInfo");
+                        window.location.href = 'index.html?userId='+result.detail.id;
+                    } else {
+                        $("#errorInfo").removeClass("errorInfo");
+                    }
+                }
+            });
+        });
+	</script>
+</html>

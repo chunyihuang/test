@@ -1,0 +1,129 @@
+.section-photo .row{
+	padding: 30px 0px 100px 0px;
+	background: url(../img/phto_bg.png) no-repeat no-repeat;
+	background-size: 100% 100%;
+}
+.section-photo .row .img-cont{
+	width: 145px;
+	height: 145px;
+	border: 5px solid #9aa0d6;
+	background:#9aa0d6;
+	margin: auto;
+}
+.section-photo .row .img-cont img{
+	width: 100%;
+	height: 100%;
+}
+.section-photo .row  .user-name{
+	width: 300px;
+	margin: auto;
+	color: white;
+}
+.section-photo .row  .user-name .name{
+	margin-left: 80px;
+	font-size:3rem ;
+}
+
+.section-body .tab-nav .col-lg-3{
+	background: #2e3470;
+	color: white;
+	padding: 20px 0px;
+	text-align: center;
+}
+.section-body .tab-nav .col-lg-3.active{
+	background: #9aa0d6;
+	color: #000000;
+}
+.section-body .tab-item .col-lg-12{
+	min-height: 500px;
+	background: #9AA0D6;
+	overflow: hidden;
+	padding: 0px 40px;
+}
+
+.sl-custom-file {
+	position: relative;
+	zoom: 1;
+	cursor: pointer;
+	overflow: hidden;
+	vertical-align: middle;
+
+	display: block;
+	width: 250px;
+	line-height: 120px;
+	background: #2e3470;
+	color:#9aa0d6;
+	font-size: 3.5rem;
+	margin: auto;
+	margin-top: 150px;
+	margin-bottom: 60px;
+}
+.btn-file{
+	background: #2e3470;
+	border: none;
+	width: 100%;
+	height: 100%;
+}
+.sl-custom-file .ui-input-file {
+	position: absolute;
+	right: 0;
+	top: 0;
+	height:100%;
+	width: 100%;
+	opacity:0;
+	cursor: pointer;
+}
+.section-body .tab-item .edit-upload{
+	width: 100%;
+	border: 2px solid #2e3470;
+	overflow: hidden;
+	padding: 20px;
+	margin-bottom:2rem;
+	margin-top:2rem;
+}
+.section-body .tab-item .edit-upload .left,
+.section-body .tab-item .edit-upload .right{
+}
+.section-body .tab-item .edit-upload .left .img-cont:first-child{
+	width: 280px;
+	height: 200px;
+	line-height: 200px;
+}
+.section-body .tab-item .edit-upload .right .sl-custom-file{
+	width: 130px;
+	line-height: 50px;
+	font-size: 1.8rem;
+	margin: 0px;
+	margin-bottom: 40px;
+}
+div.clearfix{
+	margin-bottom:1rem;
+}
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	visibility: hidden;
+	clear: both;
+}
+.left{
+	width:50%;
+}
+.left{
+	float:left;
+	font-size:1.5rem;
+}
+.right{
+	float:right;
+	margin-left:2rem;
+}
+.content{
+	margin-bottom:4rem;
+}
+#preview0,#preview1,#preview2,#preview3,#preview4{
+	width: 280px;
+	height: 200px;
+	border: 1px solid #9aa0d6;
+	background:#9aa0d6;
+	margin: auto;
+}

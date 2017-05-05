@@ -1,0 +1,411 @@
+nav a,
+nav span{
+	color:#bdbcba;
+}
+nav a:hover{
+	text-decoration: none;
+	color: white !important;
+}
+nav.container-fluid{
+	height:104px;
+	line-height: 104px;
+	background: #171a21;
+}
+nav .col-lg-2{
+	padding: 0px;
+	height:104px;
+	text-align: center;
+}
+nav .menu-level-one.col-md-5{
+	height:104px;
+	width:260px;
+	padding-left:10px;
+	margin: auto;
+	z-index: 9;
+}
+nav .menu-level-one.col-md-5 .item-level-one{
+	display:inline;
+	padding:5px 4px;
+	position: relative;
+}
+nav .menu-level-one.col-md-5 .item-level-one a{
+	color: #bdbcba;
+}
+nav .menu-level-two{
+	display:none;
+	width: 74px;
+	padding: 5px 10px;
+	background: #171a21;
+	line-height:30px;
+	font-size: 12px;
+	box-shadow: 2px 2px 5px 2px black;
+	position:absolute;
+	left:-5px;
+	top:20px;
+}
+nav .menu-level-two.active{
+	display: block;
+}
+nav .personal-info{
+	float: right;
+}
+nav .personal-info .letter{
+	width:26px;
+	text-align: center;
+}
+nav .personal-info .letter:hover{
+	background:rgba(255,255,255,0.4);
+}
+nav .personal-info .user{
+	position: relative;
+	z-index: 9;
+}
+nav .personal-info .user a{
+	text-decoration: none;
+	cursor: pointer;
+}
+nav .personal-info .user{
+	border: 1px solid transparent;
+	padding: 0px 5px;
+}
+nav .personal-info .user.active{
+	border: 1px solid white;
+}
+nav .personal-info .user .menu-level-one{
+	position: absolute;
+	top:23px;
+	left: -30px;
+	width:160px;
+	padding: 5px 10px;
+	height:auto;
+	background: #3f3d3c;
+	line-height:30px;
+	border: 1px solid #454443;
+	box-shadow: 0px 0px 8px 2px gray inset;
+	display: none;
+}
+nav .personal-info .fl-right{
+	height:26px;
+	line-height: 26px;
+	margin:10px 5px;
+	vertical-align:top;
+}
+nav .personal-info .header-photor{
+	width: 36px;
+	height: 36px;
+}
+nav .personal-info .header-photor img{
+	width: 100%;
+	height: 100%;
+}
+
+.small-screen-nav{
+	position: fixed;
+	top:0px;
+	left:0px;
+	width:100%;
+	padding:16px 14px;
+	text-align: center;
+	background: black;
+}
+.small-screen-nav img{
+	height:32px;
+}
+.beforeline:before{
+	content: '';
+	width:100%;
+	height:1px;
+	background:#3d4048;
+	position: absolute;
+	top:0px;
+	left:0px;
+}
+.afterline:after{
+	content: '';
+	width:100%;
+	height:1px;
+	background:#3d4048;
+	position: absolute;
+	bottom:0px;
+	left:0px;
+}
+.beforeline.bgblack:before{
+	content: '';
+	width:100%;
+	height:2px;
+	background:linear-gradient(#070707,#9e9ea2);
+	position:absolute;
+	top:0px;
+	left:0px;
+}
+
+header{
+	z-index: 9;
+	box-shadow:1px 0px 8px 1px black;
+}
+header .menu{
+	cursor: pointer;
+	font-size:24px;
+	line-height:32px;
+	color: white;
+}
+header .nav{
+	height: 100%;
+	background: linear-gradient(45deg,#202a36,#0c0d10);
+}
+header .personal-info-nav{
+	position: fixed;
+	top:0px;
+	left:0px;
+	background: rgba(0,0,0,0.3);
+	width: 100%;
+	display: none;
+}
+header .personal-info-nav .nav{
+	position: absolute;
+	top: 0px;
+	height: 100%;
+	left: 0px;
+	color:gainsboro;
+	overflow-y:auto;
+	overflow-x: hidden;
+}
+header .personal-info-nav .nav .personal-info{
+	width: 280px;
+	height: 98px;
+	padding:30px;
+	background:linear-gradient(to right,#202a36,#0c0d10);
+	box-shadow:-2px -2px 10px 4px black inset;
+}
+header .personal-info-nav .nav .personal-info a{
+	color:gray;
+	float: left;
+	margin-left:20px;
+	line-height:30px;
+	font-size:24px;
+}
+header .personal-info-nav .nav .personal-info img{
+	border: 1px solid gray;
+	float: left;
+}
+header .personal-info-nav .menu-level-one{
+	font-size:16px;
+	text-align: left;
+	position: relative;
+}
+header .personal-info-nav .menu-level-one li{
+	padding:10px 15px;
+	position: relative;
+	cursor: pointer;
+}
+header .personal-info-nav .menu-level-one li a{
+	color: #95928e;
+	text-decoration: none;
+}
+header .personal-info-nav .menu-level-one li.item-level-one{
+	box-shadow:0px -0.5px 0.5px 0.5px black inset ;
+	font-size:20px;
+	padding:15px;
+	color:gainsboro;
+	background: #192533;
+}
+header .personal-info-nav .menu-level-one li.item-level-one .glyphicon{
+	transition: all 0.3s;
+}
+header .personal-info-nav .menu-level-one li.item-level-one .glyphicon.active{
+	transform:rotate(180deg);
+}
+header .personal-info-nav .menu-level-two{
+	background: #192533;
+	font-size:16px;
+	display: none;
+	box-shadow:0px -0.5px 0.5px 0.5px black inset;
+}
+header .personal-info-nav .menu-level-two li{
+	padding:4px 30px;
+}
+header .personal-info-nav .menu-level-two p{
+	width: 100%;
+}
+
+
+/*第一页的样式*/
+.section1{
+	background-size:100% 100%;
+	padding-bottom:100px;
+}
+#section0{
+	padding:0px;
+	background: #2e3470;
+}
+.section1 a{
+	color: rgb(198,212,223);
+	text-decoration: none;
+}
+.section1 .section1-nav{
+	background:#2e3470;
+	color: rgb(198,212,223);
+	padding: 0px;
+	z-index:3;
+}
+.section1 .section1-nav .menu-level-one li{
+	float: left;
+	padding:9px 20px;
+	position: relative;
+	cursor: pointer;
+	border-right:1px solid  #1c4367;
+}
+.section1 .section1-nav .menu-level-one li:hover{
+	background: #c7d0d9;
+	color: white;
+}
+.section1 .section1-nav .menu-level-one li:hover a{
+	color:black;
+}
+.section1 .section1-nav .menu-level-one  .item-level-one span{
+	font-size:10px;
+	margin-left:5px;
+}
+.section1 .section1-nav .menu-level-one  .item-level-one:hover .menu-level-two{
+	display: block;
+}
+.section1 .section1-nav .menu-level-two{
+	position: absolute;
+	top: 34px;
+	left:0px;
+	background:#c7d0d9;
+	width:120px;
+	box-shadow:0px -1px 6px 0px black;
+	padding:5px;
+	display: none;
+}
+.section1 .section1-nav .menu-level-two P{
+	padding: 10px 5px;
+	color: #4e6f9e;
+	font-size: 12px;
+}
+.section1 .section1-nav .menu-level-two li{
+	border: none;
+	padding:5px;
+	margin:4px auto;
+	display: block;
+	width: 100%;
+	border-radius: 2px;
+}
+.section1 .section1-nav .menu-level-two li:hover{
+	background: #252e36;
+	width:100%;
+}
+.section1 .section1-nav .menu-level-two li:hover a{
+	color:#c7d0d9;
+}
+.section1 .section1-nav .fl-right{
+	position: relative;
+	margin-top: 3px;
+}
+.section1 .section1-nav .fl-right.msg{
+	height: 100%;
+	margin-top: 0px;
+	line-height: 36px;
+}
+.section1 .section1-nav .fl-right input{
+	padding:8px 40px 4px 10px;
+	color:#FFFFFF;
+	border:1px solid #272c30;
+	border-radius: 3px;
+}
+.section1 .section1-nav .fl-right input:hover{
+	border-color: #4b8cc8;
+}
+.section1 .section1-nav .fl-right span{
+	height:26px;
+	width: 26px;
+	line-height:26px;
+	text-align: center;
+	font-size: 15px;
+	position: absolute;
+	top:3px;
+	right:2px;
+	color: black;
+	border-radius: 3px;
+	cursor: pointer;
+}
+/*第一页的导航条在小屏幕上面显示的样式*/
+.section1 .small-screen{
+	padding:40px 0px 0px 0px;
+}
+.section1 .small-screen .section1-nav .menu-level-one{
+	float: none;
+}
+.section1 .small-screen .section1-nav li{
+	float: none;
+	width: 100%;
+}
+.section1 .small-screen .section1-nav .item-level-one.active{
+	background:#c7d0d9;
+}
+.section1 .small-screen .section1-nav .item-level-one.active a{
+	color: black;
+}
+.section1 .small-screen .section1-nav .fl-right{
+	float: none;
+	width: 100%;
+	margin-top:10px;
+	padding:2px 6px;
+}
+.section1 .small-screen .section1-nav .fl-right input{
+	width: 100%;
+}
+.section1 .small-screen .section1-nav .fl-right span{
+	right:8px;
+}
+.section1 .small-screen .section1-nav .menu-level-two{
+	position: initial;
+	width:100%;
+	box-shadow: none;
+}
+.section1 .small-screen .section1-nav .menu-level-two a{
+	color: black;
+}
+
+/*第一页的导航条在小屏幕上面显示的样式*/
+.section1 .small-screen{
+	padding:40px 0px 0px 0px;
+}
+.section1 .small-screen .section1-nav .menu-level-one{
+	float: none;
+}
+.section1 .small-screen .section1-nav li{
+	float: none;
+	width: 100%;
+}
+.section1 .small-screen .section1-nav .item-level-one.active{
+	background:#c7d0d9;
+}
+.section1 .small-screen .section1-nav .item-level-one.active a{
+	color: black;
+}
+.section1 .small-screen .section1-nav .fl-right{
+	float: none;
+	width: 100%;
+	margin-top:10px;
+	padding:2px 6px;
+}
+.section1 .small-screen .section1-nav .fl-right input{
+	width: 100%;
+}
+.section1 .small-screen .section1-nav .fl-right span{
+	right:8px;
+}
+.section1 .small-screen .section1-nav .menu-level-two{
+	position: initial;
+	width:100%;
+	box-shadow: none;
+}
+.section1 .small-screen .section1-nav .menu-level-two a{
+	color: black;
+}
+#section0{
+	padding: 5px 0px;
+}
+/*第一页的导航条样式结束*/

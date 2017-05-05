@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context.xsd
+      http://www.springframework.org/schema/mvc
+      http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- 注解扫描的包 -->
+    <context:component-scan base-package="com.h5.game.*" />
+    <!-- 使用 annotation -->
+    <context:annotation-config />
+
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <ref bean="mappingJackson2HttpMessageConverter" />
+            </list>
+        </property>
+    </bean>
+    <!-- 定义Json转换器 -->
+    <bean id="mappingJackson2HttpMessageConverter"
+          class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>application/json;charset=UTF-8</value>
+            </list>
+        </property>
+
+    </bean>
+
+
+
+    <!-- 开启注解方案1 -->
+    <!-- 注解方法处理 -->
+    <!-- <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"
+        /> -->
+    <!-- 注解类映射处理 -->
+    <!-- <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"></bean> -->
+
+    <!-- 开启注解方案2 -->
+    <mvc:annotation-driven/>
+
+    <!-- 静态资源访问，方案1
+    <mvc:resources location="/WEB-INF/game/" mapping="/uploads/**" />
+    <mvc:resources mapping="/admin/** " location="/admin/"/>
+-->
+    <mvc:default-servlet-handler/>
+
+    <!-- 静态资源访问，方案2 -->
+    <!-- <mvc:default-servlet-handler/> -->
+
+    <!-- 视图解释类 -->
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/"></property>
+        <!--可为空,方便实现自已的依据扩展名来选择视图解释类的逻辑 -->
+        <property name="suffix" value=".html"></property>
+
+    </bean>
+
+    <!-- 上传文件bean -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="utf-8" />
+
+        <property name="maxUploadSize" value="10485760" />
+        <property name="maxInMemorySize" value="40960" />
+        <property name="resolveLazily" value="true"/>
+    </bean>
+
+    <!-- Spring拦截器 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/admin/**"/>
+            <bean class="com.h5.game.filter.AuthInterceptor"/>
+        </mvc:interceptor>
+        <bean class="com.h5.game.filter.ValidateInterceptor"/>
+    </mvc:interceptors>
+    <!-- Spring拦截器 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/user/**"/>
+            <bean class="com.h5.game.filter.UserInterceptor"/>
+        </mvc:interceptor>
+        <bean class="com.h5.game.filter.ValidateInterceptor"/>
+    </mvc:interceptors>
+
+    <!-- 用于进行校验的方法级别拦截器 -->
+    <aop:config>
+        <!--切入点-->
+        <aop:pointcut id="loginPoint"  expression="execution(public * com.h5.game.controller.*.*(..)) "/>
+        <!--在该切入点使用自定义拦截器-->
+        <aop:advisor pointcut-ref="loginPoint" advice-ref="validateInterceptor"/>
+        <!--切入点-->
+    </aop:config>
+
+    <!-- 用于对SpringMVC对外接口的授权验证拦截器 -->
+    <aop:config>
+        <aop:pointcut id="authPointCut" expression="execution(public * com.h5.game.controller.admin.*.*(..))"/>
+        <aop:advisor pointcut-ref="authPointCut" advice-ref="controllerInterceptor"/>
+    </aop:config>
+
+    <!-- 拦截用户对用户信息的操作 -->
+    <aop:config>
+        <aop:pointcut id="userPointCut" expression="execution(public * com.h5.game.controller.user.*.*(..))"/>
+        <aop:advisor pointcut-ref="userPointCut" advice-ref="userControllerInterceptor"/>
+    </aop:config>
+
+    <!-- 用于进行数据过滤的拦截器 -->
+    <aop:config>
+        <!-- 拦截前台用户上传、下载、点赞、评论游戏 -->
+        <aop:pointcut id="dataPoint" expression="execution(public * com.h5.game.controller.GameController.comment*(..))
+                                                || execution(public * com.h5.game.controller.GameController.like*(..))
+                                                || execution(public * com.h5.game.controller.GameController.download*(..))"/>
+        <aop:advisor advice-ref="userControllerInterceptor" pointcut-ref="dataPoint"/>
+    </aop:config>
+
+    <!-- 设置aop代理 不使用jdk代理使用proxy代理 -->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+    <!-- 使用XML配置的方式配置AOP -->
+    <!--<bean id="logBean" class="com.westcatr.rd.smartgrid.aop.impl.LogAop"></bean>
+    <aop:config proxy-target-class="true">
+        <aop:aspect id="logAspect" ref="logBean" >
+            <aop:pointcut id="logPointcut" expression="@annotation(com.westcatr.rd.smartgrid.aop.annotations.Log)"/>
+            <aop:before method="beforeExec" pointcut-ref="logPointcut"></aop:before>
+        </aop:aspect>
+    </aop:config>-->
+    <!-- SpringSecurity专用的   对密码进行MD5编码，没什么用
+    <bean class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" id="passwordEncoder"/> -->
+
+</beans>

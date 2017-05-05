@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>登录--H5游戏平台后台管理</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="assets/css/ace.min.css"/>
+		<link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+		<style>
+			.errorInfo{
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body class="login-layout">
+		<div class="main-container">
+			<div class="main-content">
+				<div class="row">
+					<div class="col-sm-10 col-sm-offset-1">
+						<div class="login-container">
+							<div class="center">
+								<h1>
+									<span class="red">logo放置处</span>
+								</h1>
+								<h4 class="blue">&copy; 我们的团队名</h4>
+							</div>
+
+							<div class="space-6"></div>
+
+							<div class="position-relative">
+								<div id="login-box" class="login-box visible widget-box no-border">
+									<div class="widget-body">
+										<div class="widget-main">
+											<h4 class="header blue lighter bigger">
+												<i class="icon-coffee green"></i>
+												请输入您的登录信息
+											</h4>
+
+											<div class="space-6"></div>
+
+											<form>
+												<fieldset>
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="text" class="form-control" placeholder="请输入用户名" id="username"/>
+															<i class="icon-user"></i>
+														</span>
+													</label>
+													<label class="block clearfix">
+														<span class="block input-icon input-icon-right">
+															<input type="password" class="form-control" placeholder="请输入密码" id="password"/>
+															<i class="icon-lock"></i>
+														</span>
+													</label>
+													<span style="color: red;" class="errorInfo" id="errorInfo">用户名或密码错误！</span>
+
+													<div class="space"></div>
+
+													<div class="clearfix">
+														<label class="inline">
+															<input type="checkbox" class="ace" id="remember"/>
+															<span class="lbl">记住密码</span>
+														</label>
+
+														<button type="button" class="width-35 pull-right btn btn-sm btn-primary" id="login">
+															<i class="icon-key"></i>
+															登录
+														</button>
+													</div>
+
+													<div class="space-4"></div>
+												</fieldset>
+											</form>
+
+										</div><!-- /widget-main -->
+									</div><!-- /widget-body -->
+								</div><!-- /login-box -->
+							</div><!-- /position-relative -->
+						</div>
+					</div><!-- /.col -->
+				</div><!-- /.row -->
+			</div>
+		</div><!-- /.main-container -->
+
+
+		<script type="text/javascript" src="assets/js/jquery-2.0.3.min.js"></script>
+		<script type="text/javascript" src="assets/js/jquery.mobile.custom.min.js"></script>
+		<script type="text/javascript" src="assets/js/cookie.js"></script>
+		<script type="text/javascript" src="assets/js/login.js"></script>
+</body>
+</html>

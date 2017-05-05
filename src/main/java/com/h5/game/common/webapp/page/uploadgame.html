@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title>游戏上传</title>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/base.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/public.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/imgUpload.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/header.css"/>
+	
+	<link rel="stylesheet" type="text/css" href="../admin/jquery-easyui-1.5.2/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="../admin/jquery-easyui-1.5.2/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="../admin/jquery-easyui-1.5.2/demo/demo.css">
+	<style type="text/css">
+		body{
+			padding: 0px;
+		}
+	</style>
+	<script type="text/javascript" src="../admin/jquery-easyui-1.5.2/jquery.min.js"></script>
+	<script type="text/javascript" src="../admin/jquery-easyui-1.5.2/jquery.easyui.min.js"></script>
+</head>
+<body>
+	<section class="container-fluid section1" id="section0">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 section1-nav">
+							<ul class="fl-left menu-level-one">
+								<li class="item-level-one">
+									<a href="#">
+										您的商店
+									</a>
+									<span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+									<ul class="menu-level-two">
+										<li>
+											<a href="#">商店主页</a>
+										</li>
+										<li>
+											<a href="#">最近查看过的</a>
+										</li>
+										<li>
+											<a href="#">最近更新</a>
+										</li>
+									</ul>
+								</li>
+								<li class="item-level-one">
+									<a href="#">
+										游戏
+									</a>
+									<span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+									<ul class="menu-level-two">
+										<li>
+											<a href="#">免费</a>
+										</li>
+										<li>
+											<a href="#">抢先体验</a>
+										</li>
+										<li>
+											<a href="#">试玩</a>
+										</li>
+										<p>按类型浏览：</p>
+										<li>
+											<a href="#">休闲</a>
+										</li>
+										<li>
+											<a href="#">体育</a>
+										</li>
+										<li>
+											<a href="#">冒险</a>
+										</li>
+										<li>
+											<a href="#">动作</a>
+										</li>
+										<li>
+											<a href="#">大型多人在线</a>
+										</li>
+										<li>
+											<a href="#">模拟</a>
+										</li>
+										<li>
+											<a href="#">独立</a>
+										</li>
+										<li>
+											<a href="#">竞速</a>
+										</li>
+										<li>
+											<a href="#">策略</a>
+										</li>
+										<li>
+											<a href="#">角色扮演</a>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<a href="#">
+										校园动态
+									</a>
+								</li>
+								<li>
+									<a id="person">
+										个人中心
+									</a>
+								</li>
+							</ul>
+							<div class="msg fl-right ml10">
+								<a href="login.html">登录</a>
+								|
+								<a href="register.html">注册</a>
+							</div>
+							<div class="fl-right">
+								<input type="text" name="" id="" value="" placeholder="搜索游戏" />
+								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		
+<section class="container-fluid section-photo mt20">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="img-cont">
+				<img src="../img/phto.png"/>
+			</div>
+			<div class="user-name pt20">
+				<span class="name">boom卷卷</span>
+				<span class="sex">女</span>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="container-fluid section-body">
+	<div class="row tab-nav ft20">
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 active">上传游戏</div>
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">提交审核（0）</div>
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">未通过审核（0）</div>
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">审核通过（0）</div>
+	</div>
+	<div class="row tab-item">
+		<div class="col-lg-12 active content">
+			<form title="添加商品" action="/player/uploadGame" method="post" enctype="multipart/form-data">
+				<div class="edit-upload row">
+					<div class="clearfix">
+						<p class="left">游戏名称：</p>
+						<p class="right"><input type="text" maxlength="15" style="width:15rem;background: #c7c9db;border:none;outline:none;" placeholder="请输入游戏名称，15字以内" name="gameName" id="gameName"/></p>
+					</div>
+					<div class="clearfix">
+						<p class="left">简述：</p>
+						<p class="right"><textarea placeholder="请输入游戏简述，100字以内" maxlength="100" style="width:15rem;height:10rem;background: #c7c9db;border:none;outline:none;" name="summary" id="summary"></textarea></p>
+					</div>
+					<div class="clearfix">
+						<p class="left">版本：</p>
+						<p class="right"><input type="text" maxlength="15" style="width:15rem;background: #c7c9db;border:none;outline:none;" placeholder="请输入游戏版本" name="version" id="version"/></textarea></p>
+					</div>
+					<div class="clearfix">
+						<p class="left">游戏入口：</p>
+						<p class="right"><input type="text" maxlength="15" style="width:15rem;background: #c7c9db;border:none;outline:none;" placeholder="请输入游戏入口" name="indexName" id="indexName"/></textarea></p>
+					</div>
+					<div class="clearfix">
+						<p class="left">分类：</p>
+						<div class="right">
+							<select  id="sort" style="width:15rem;background: #c7c9db;" name="gameTypeId">
+
+							</select>
+						</div>
+					</div>
+					<input type="hidden" value="" name="token">
+					<div class="clearfix">
+						<div class="left">
+							<img id="preview4" alt=""/>
+						</div>
+						<div class="right">
+							<div class="sl-custom-file" style="width:15rem;">
+								<input type="button" value="点击上传图标" class="btn-file"/>
+								<input class="ui-input-file" type="file" name="icon" id="file4" value="" multiple="multiple"/>
+							</div>
+						</div>
+					</div>
+					<div class="clearfix">
+						<div class="left">
+							<img id="preview0" alt=""/>
+						</div>
+						<div class="right">
+							<div class="sl-custom-file" style="width:15rem;">
+								<input type="button" value="点击上传封面" class="btn-file"/>
+								<input class="ui-input-file" type="file" name="screen" id="file0" value="" multiple="multiple"/>
+							</div>
+						</div>
+					</div>
+					<div class="clearfix">
+						<div class="left">
+							<img src="" id="preview1"/>
+						</div>
+						<div class="right">
+							<div class="sl-custom-file" style="width:15rem;">
+								<input type="button" value="点击上传预览图" class="btn-file"/>
+								<input class="ui-input-file" type="file" name="previewPics" id="file1" value=""  />
+							</div>
+						</div>
+					</div>
+					<div class="clearfix">
+						<div class="left">
+							<img src="" id="preview2"/>
+						</div>
+						<div class="right">
+							<div class="sl-custom-file" style="width:15rem;">
+								<input type="button" value="点击上传预览图" class="btn-file"/>
+								<input class="ui-input-file" type="file" name="previewPics" id="file2" value=""  />
+							</div>
+						</div>
+					</div>
+					<div class="clearfix">
+						<div class="left">
+							<img src="" id="preview3"/>
+						</div>
+						<div class="right">
+							<div class="sl-custom-file" style="width:15rem;">
+								<input type="button" value="点击上传预览图" class="btn-file"/>
+								<input class="ui-input-file" type="file" name="previewPics" id="file3" value=""  />
+							</div>
+						</div>
+					</div>
+					<input class="easyui-filebox" labelPosition="top" data-options="prompt:'请选择.zip格式的压缩文件'" style="width:100%;background: #c7c9db;" name="zip" id="zip"/>
+					<input type="submit" value="提交审核" style="width:100%;padding:.9rem;border:none;margin-top:.5rem;background: #2e3470;color: #9aa0d6;font-size:1.5rem;"/>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>
+
+<script src="../js/jquery-3.1.1.min.js"></script>
+<script src="../js/imgUpload.js"></script>
+<script src="../admin/assets/js/cookie.js"></script>
+<script>
+    $(function () {
+        $.ajax({
+            type : "get",
+            url : "/game/listGameType",
+            success : function(result) {
+                var html='';
+                for(var i = 0;i<result.length;i++){
+                    var gameTypeId = result[i].id;
+                    html+=('<option value="'+result[i].id+'" id="gameTypeId" >'+result[i].name+'</option>');
+                }
+                $('#sort').html(html);
+                if ( result.status ) {
+
+                }
+            }
+        });
+        $(".l-btn-text").text("点击上传游戏文件");
+        $("input:hidden").val(getCookie("userToken"));
+    });
+</script>
+</body>
+</html>

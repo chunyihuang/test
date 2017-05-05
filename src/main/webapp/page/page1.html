@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>游戏详情</title>
+		<link rel="stylesheet" type="text/css" href="../css/bootstrap.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/base.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/public.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/header.css"/>
+	</head>
+	<style type="text/css">
+		.col-lg-12,.col-lg-8,.col-lg-4,
+		.col-md-8,
+		.col-sm-12,
+		.col-xs-12{
+			padding:0px;
+		}
+		.padding-left5{
+			padding-left:0px;
+		}
+		.padding-right20{
+			padding-right:20px;
+		}
+		.section2{
+			background:url(../img/colored_body.png);
+		}
+		.section2 .link-way,
+		.section2 .link-way a{
+			color: gray;
+			font-size: 12px;
+		}
+		.section2 h1.t{
+			color: white;
+			font-size:34px;
+			margin-bottom: 24px;
+		}
+		.section2 .picture-slide .stage{
+			width: 100%;
+			position: relative;
+			overflow: hidden;
+		}
+		.section2 .picture-slide .stage .img-bg{
+			width: 100%;
+		}
+		.section2 .picture-slide .stage li{
+			width: 100%;
+			position: absolute;
+			top:0px;
+			left:0px;
+			opacity: 0;
+			transition: all 0.5s;
+		}
+		.section2 .picture-slide .stage li.active{
+			opacity: 1;
+		}
+		.section2 .picture-slide .stage li img{
+			width: 100%;
+		}
+		.section2 .picture-nav{
+			overflow: hidden;
+		}
+		.section2 .picture-nav .bar-cont{
+			width: 100%;
+			height:20px;
+			padding: 0px 40px;
+			margin-top: 5px;
+			margin-bottom: 10px;
+			position: relative;
+		}
+		.section2 .picture-nav .bar-cont .prev,
+		.section2 .picture-nav .bar-cont .next{
+			position: absolute;
+			top: 0px;
+			width: 38px;
+			height: 100%;
+			line-height:20px;
+			border-radius: 5px;
+			background:rgba(26,38,50,0.6);
+			text-align: center;
+		}
+		.section2 .picture-nav .bar-cont .prev span,
+		.section2 .picture-nav .bar-cont .next span{
+			color:lightskyblue;
+		}
+		.section2 .picture-nav .bar-cont .prev{
+			left: 0px;
+		}
+		.section2 .picture-nav .bar-cont .next{
+			right: 0px;
+		}
+		.section2 .picture-nav .bar-cont .bar{
+			width: 100%;
+			height: 100%;
+			border-radius: 5px;
+			position: relative;
+			background:rgba(0,0,0,0.2);
+		}
+		.section2 .picture-nav .bar-cont .bar .brand{
+			width:12%;
+			height: 100%;
+			border-radius: 5px;
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			background:rgba(26,38,50,0.6);
+		}
+		.section2 .picture-nav .small-img{
+			width: 976px;
+			padding:3px 0px;
+			height:68px;
+			position: relative;
+			top: 0px;
+			left:0px;
+		}
+		.section2 .picture-nav .small-img li{
+			width:122px;
+			height:65px;
+			float: left;
+			padding:2px 3px;
+			overflow:hidden;
+			position: relative;
+		}
+		.section2 .picture-nav .small-img li.active{
+			padding: 0px 1px;
+			border: 2px solid white;
+		}
+		.section2 .text-cont{
+			color:lightgrey;
+		}
+		.section2 .text-cont .col-lg-12{
+			padding: 0px 5px;
+		}
+		.section2 .text-cont h3{
+			color:darkgrey;
+			font-size:14px;
+			margin-top:10px;
+		}
+		.section2 .text-cont .score p{
+			font-size:11px;
+			color: gray;
+		}
+		.section2 .text-cont .score p em{
+			font-size: 14px;
+			color:lightyellow;
+			padding: 0px 5px 0px 8px;
+		}
+		.section2 .text-cont .time{
+			color: gray;
+			margin-top: 10px;
+		}
+		.section2 .text-cont .time em{
+			color:darkgray;
+		}
+		.section2 .text-cont .tag-cont h3{
+			margin-bottom: 5px;
+		}
+		.section2 .text-cont .tag-cont .tag{
+			display: inline-block;
+			padding: 1px 5px;
+			font-size: 11px;
+			color:lightskyblue;
+			background:rgba(103,193,245,0.2);
+		}
+	</style>
+	<body>
+		<section class="container-fluid section1" id="section0">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 col-md-12 section1-nav">
+						<ul class="fl-left menu-level-one">
+							<li class="item-level-one">
+								<a href="../index.html">
+									平台首页
+								</a>
+								<!--<span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+								<ul class="menu-level-two">
+									<li>
+										<a href="#">商店主页</a>
+									</li>
+									<li>
+										<a href="#">最近查看过的</a>
+									</li>
+									<li>
+										<a href="#">最近更新</a>
+									</li>
+								</ul>-->
+							</li>
+							<li class="item-level-one">
+								<a href="#">
+									游戏
+								</a>
+								<span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+								<ul class="menu-level-two">
+									<li>
+										<a href="#">免费</a>
+									</li>
+									<li>
+										<a href="#">抢先体验</a>
+									</li>
+									<li>
+										<a href="#">试玩</a>
+									</li>
+									<p>按类型浏览：</p>
+									<li>
+										<a href="#">休闲</a>
+									</li>
+									<li>
+										<a href="#">体育</a>
+									</li>
+									<li>
+										<a href="#">冒险</a>
+									</li>
+									<li>
+										<a href="#">动作</a>
+									</li>
+									<li>
+										<a href="#">大型多人在线</a>
+									</li>
+									<li>
+										<a href="#">模拟</a>
+									</li>
+									<li>
+										<a href="#">独立</a>
+									</li>
+									<li>
+										<a href="#">竞速</a>
+									</li>
+									<li>
+										<a href="#">策略</a>
+									</li>
+									<li>
+										<a href="#">角色扮演</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="#">
+									校园动态
+								</a>
+							</li>
+							<li>
+								<a id="person" href="../login.html">
+									个人中心
+								</a>
+							</li>
+						</ul>
+						<div class="msg fl-right ml10" id="login-stauts">
+							<a href="../login.html">登录</a>|<a href="../register.html">注册</a>
+						</div>
+						<div class="fl-right">
+							<input type="text" name="" id="" value="" placeholder="搜索游戏" />
+							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>		
+	
+		<section class="container-fluid section2" id="section2">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="link-way">
+						<p>
+							<a href="#">
+								所有游戏
+							</a>
+							>
+							<a href="#">
+								抢先体验游戏
+							</a>
+							>
+							<a href="#">
+								游戏名字
+							</a>
+						</p>
+					</div>
+				</div>
+				<div class="col-lg-12">
+					<h1 class="t">H1Z1:King of the Kill</h1>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 padding-right20">
+					<div class="picture-slide">
+						<ul class="stage" id="stage">
+							<img class="img-responsive img-bg" src="../img/slide1.jpg"/>
+							<li class="active">
+								<img class="img-responsive" src="../img/slide1.jpg"/>
+							</li>
+							<li>
+								<img class="img-responsive" src="../img/slide2.jpg"/>
+							</li>
+							<li>
+								<img class="img-responsive" src="../img/slide3.jpg"/>
+							</li>
+							<li>
+								<img class="img-responsive" src="../img/slide4.jpg"/>
+							</li>
+							<li>
+								<img class="img-responsive" src="../img/slide5.jpg"/>
+							</li>
+							<li>
+								<img class="img-responsive" src="../img/slide6.jpg"/>
+							</li>
+							<li>
+								<img class="img-responsive" src="../img/slide7.jpg"/>
+							</li>
+						</ul>
+					</div>
+					<div class="picture-nav" id="picture-nav">
+						<ul class="small-img">
+							<li class="active">
+								<img class="img-responsive" src="../img/slide1.jpg"/>
+							</li>
+							<li>
+								<img class="img-responsive" src="../img/slide2.jpg"/>
+							</li>
+							<li>
+								<img class="img-responsive" src="../img/slide3.jpg"/>
+							</li>
+							<li>
+								<img class="img-responsive" src="../img/slide4.jpg"/>
+							</li>
+							<li>
+								<img class="img-responsive" src="../img/slide5.jpg"/>
+							</li>
+							<li>
+								<img class="img-responsive" src="../img/slide6.jpg"/>
+							</li>
+							<li>
+								<img class="img-responsive" src="../img/slide7.jpg"/>
+							</li>
+						</ul>
+						<div class="bar-cont" id="bar-cont">
+							<div class="prev">
+								<span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
+							</div>
+							<div class="bar">
+								<div class="brand"></div>
+							</div>
+							<div class="next">
+								<span class="glyphicon glyphicon-triangle-right" aria-hidden="true"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-4 col-xs-12 col-sm-12 padding-left5">
+					<div class="text-cont">
+						<div class="col-lg-12 col-md-12 col-xs-12 col-sm-6">
+							<div class="img-cont">
+								<img class="img-responsive" src="../img/asaaa.jpg"/>
+							</div>
+						</div>
+						<div class="col-lg-12 col-md-12 col-xs-12 col-sm-6">
+							<div class="text">
+								<p>
+									H1Z1: King of the Kill is a fast-paced shooter in which players compete in large-scale chaotic PvP spectacles of skill, wit and a little luck, where everyone must fight to the death to stand alone at the top of the podium. 
+								</p>
+							</div>
+							<div class="about-game">
+								<div class="score">
+									<h3>用户评测</h3>
+									<p>最新：<em>褒贬不一</em>(8,276篇评测)</p>
+									<p>总体：<em>褒贬不一</em>(8,276篇评测)</p>
+								</div>
+								<div class="time">
+									<p>发行日期：<em>2016年2月18日</em></p>
+								</div>
+								<div class="tag-cont">
+									<h3>该产品的热门用户自定义标签</h3>
+									<div class="tag">生存</div>
+									<div class="tag">暴力</div>
+									<div class="tag">血腥</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="container-fluid section3" id="section3">
+			<div class="row">
+				<div class="col-lg-8 padding-right20"></div>
+			</div>
+		</section>
+	</body>
+	<script src="../js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/header.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../admin/assets/js/cookie.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../js/public.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var slide_index=0;
+		$('#bar-cont .next').on('click',function(){
+			slide_index++;
+			if(slide_index>6){
+				slide_index=6;
+			}
+			$('#stage li').removeClass('active');
+			$('#stage li').eq(slide_index).addClass('active');
+			if(slide_index>4){
+				$('#picture-nav .small-img').css('left','-366px');
+				var max_left=$('#bar-cont .bar').width()-$('#bar-cont .bar .brand').width();
+				$('#bar-cont .brand').css('left',max_left+'px');
+			}
+			$('#picture-nav .small-img li').removeClass('active');
+			$('#picture-nav .small-img li').eq(slide_index).addClass('active');
+		})
+		$('#bar-cont .prev').on('click',function(){
+			slide_index--;
+			if(slide_index<0){
+				slide_index=0;
+			}
+			$('#stage li').removeClass('active');
+			$('#stage li').eq(slide_index).addClass('active');
+			if(slide_index<3){
+				$('#picture-nav .small-img').css('left','0px');
+				$('#bar-cont .brand').css('left','0px');
+			}
+			$('#picture-nav .small-img li').removeClass('active');
+			$('#picture-nav .small-img li').eq(slide_index).addClass('active');
+		})
+		$('#bar-cont .brand').on('mousedown',function(ev){
+			var begin_clintx=ev.clientX;
+			var begin_left=$(this).position().left;
+			var max_left=$('#bar-cont .bar').width()-$('#bar-cont .bar .brand').width();
+			$(document).on('mousemove',function(ev){
+				var left=ev.clientX-begin_clintx+begin_left;
+				var _max_left=$('#picture-nav .small-img').width()-$('#picture-nav').width();
+				if(left<0){
+					left=0;
+				}
+				if(left>max_left){
+					left=max_left;
+				}
+				var leftr=_max_left*left/max_left;
+				$('#picture-nav .small-img').css('left',-leftr+'px');
+				$('#bar-cont .brand').css('left',left+'px');
+				return false;
+			})
+			$(document).on('mouseup',function(){
+				$(document).off('mousemove');
+			})
+		})
+		$('#picture-nav .small-img li').on('click',function(){
+			slide_index=$(this).index();
+			$('#stage li').removeClass('active');
+			$('#stage li').eq(slide_index).addClass('active');
+			$('#picture-nav .small-img li').removeClass('active');
+			$('#picture-nav .small-img li').eq(slide_index).addClass('active');
+		})
+	</script>
+</html>

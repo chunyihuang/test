@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>微信菜单管理</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+
+		<link rel="stylesheet" href="assets/css/ace.min.css" />
+		<link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="assets/css/ace-skins.min.css" />
+
+		<!--[if lte IE 8]>
+		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+		<![endif]-->
+
+		<!-- inline styles related to this page -->
+
+		<!-- ace settings handler -->
+
+		<script src="assets/js/ace-extra.min.js"></script>
+
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+		<!--[if lt IE 9]>
+		<script src="assets/js/html5shiv.js"></script>
+		<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+		<style type="text/css">
+			.releaseMenu{
+				background-color: green;
+				border-radius: 5px;
+				padding: 5px;
+				font-size: 12px;
+			}
+			.addNode{
+				background-color: green;
+				border-radius: 5px;
+				padding: 5px;
+				font-size: 12px;
+			}
+			.delNode{
+				background-color: red;
+				border-radius: 5px;
+				padding: 5px;
+				font-size: 12px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="navbar navbar-default" id="navbar">
+			<script type="text/javascript">
+				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+			</script>
+			<div class="navbar-container" id="navbar-container">
+				<div class="navbar-header pull-left">
+					<a href="#" class="navbar-brand">
+						<small>
+							<i class="icon-logo"></i>
+							H5游戏平台后台管理系统
+						</small>
+					</a><!-- /.brand -->
+				</div><!-- /.navbar-header -->
+
+				<div class="navbar-header pull-right" role="navigation">
+					<ul class="nav ace-nav">
+						<li class="light-blue">
+							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
+											<span class="user-info">
+												<small>欢迎光临,</small>
+												<small id="adminName"></small>
+											</span>
+
+								<i class="icon-caret-down"></i>
+							</a>
+							<ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+								<li>
+									<a href="#">
+										<i class="icon-cog"></i>
+										设置
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										<i class="icon-user"></i>
+										个人资料
+									</a>
+								</li>
+
+								<li class="divider"></li>
+
+								<li class="logout">
+									<a href="#" >
+										<i class="icon-off"></i>
+										退出
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul><!-- /.ace-nav -->
+				</div><!-- /.navbar-header -->
+			</div><!-- /.container -->
+		</div>
+
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+
+				<div class="sidebar" id="sidebar">
+					<script type="text/javascript">
+						try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+					</script>
+
+					<ul class="nav nav-list">
+						<li>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-cog"></i>
+
+								<span class="menu-text">
+									系统管理
+								</span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li>
+									<a href="#">
+										<i class="icon-double-angle-right"></i>
+										系统配置
+									</a>
+								</li>
+
+								<li>
+									<a href="#">
+										<i class="icon-double-angle-right"></i>
+										权限管理
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li>
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-user"></i>
+
+								<span class="menu-text">
+									用户管理
+								</span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+							<ul class="submenu">
+								<li>
+									<a href="user.html">
+										<i class="icon-double-angle-right"></i>
+										前台用户管理
+									</a>
+								</li>
+
+								<li>
+									<a href="admin.html">
+										<i class="icon-double-angle-right"></i>
+										后台用户管理
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li class="active open">
+							<a href="#" class="dropdown-toggle">
+								<i class="icon-comments-alt"></i>
+
+								<span class="menu-text">
+									微信管理
+								</span>
+
+								<b class="arrow icon-angle-down"></b>
+							</a>
+
+							<ul class="submenu">
+								<li>
+									<a href="wxUser.html">
+										<i class="icon-double-angle-right"></i>
+										微信用户管理
+									</a>
+								</li>
+
+								<li class="active">
+									<a href="wxMenu.html">
+										<i class="icon-double-angle-right"></i>
+										微信菜单管理
+									</a>
+								</li>
+							</ul>
+						</li>
+
+						<li>
+							<a href="game.html" class="dropdown-toggle">
+								<i class="icon-gamepad"></i>
+
+								<span class="menu-text">
+									游戏管理
+								</span>
+							</a>
+						</li>
+
+						<li>
+							<a href="comments.html" class="dropdown-toggle">
+								<i class="icon-comments"></i>
+
+								<span class="menu-text">
+									评论管理
+								</span>
+							</a>
+						</li>
+
+						<li class="logout">
+							<a href="login.html" class="dropdown-toggle">
+								<i class="icon-power-off"></i>
+
+								<span class="menu-text">
+									退出系统
+								</span>
+							</a>
+						</li>
+					</ul><!-- /.nav-list -->
+
+					<div class="sidebar-collapse" id="sidebar-collapse">
+						<i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+					</div>
+
+					<script type="text/javascript">
+						try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+					</script>
+				</div>
+
+				<div class="main-content">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<a href="#">首页</a>
+							</li>
+
+							<li>
+								<a href="#">微信管理</a>
+							</li>
+							<li class="active">微信菜单管理</li>
+						</ul><!-- .breadcrumb -->
+
+					</div>
+
+					<div class="page-content">
+						<div class="page-header">
+							<h1>
+								微信菜单管理
+								<small>
+									<i class="icon-double-angle-right"></i>
+									查看
+								</small>
+							</h1>
+						</div><!-- /.page-header -->
+
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="widget-box">
+											<div class="widget-header header-color-blue2">
+												<h4 class="lighter smaller">
+													<p style="float:left;margin-bottom: 0;">结点信息</p>
+													<p style="float: right;margin-right: 10px;margin-bottom: 0;">
+													<span class="releaseMenu">发布菜单+</span>
+													<span class="addNode">新建结点+</span>
+													<span class="delNode">删除结点-</span>
+													</p>
+												</h4>
+											</div>
+
+											<div class="widget-body">
+												<div class="widget-main padding-8">
+													<div id="tree1" class="tree"></div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-sm-6">
+										<div class="widget-box">
+											<div class="widget-header header-color-blue2">
+												<h4 class="lighter smaller">
+													<p style="float:left;">详细信息</p>
+												</h4>
+											</div>
+											<div class="widget-body">
+												<div class="clearfix">
+													<p style="float: left;">菜单标题：</p>
+													<p style="float: right;"><input type="text" name="menuTit" placeholder="不超过16个字节，子菜单不超过40个字节"></p>
+												</div>
+												<div class="clearfix">
+													<p style="float: left;">菜单响应类型：</p>
+													<p style="float: right;">
+														<select>
+															<option>一级菜单</option>
+															<option>二级菜单</option>
+														</select>
+													</p>
+												</div>
+												<div class="clearfix">
+													<p style="float: left;">菜单KEY值：</p>
+													<p style="float: right;"><input type="text" name="menuTit" placeholder="用于消息借口推送，不超过128字节"></p>
+												</div>
+												<div class="clearfix">
+													<p style="float: left;">网页链接</p>
+													<p style="float: right;"><input type="text" name="menuTit" placeholder="用于菜单可打开链接，不超过2556字节"></p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+
+								<script type="text/javascript">
+									var $assets = "assets";//this will be used in fuelux.tree-sampledata.js
+								</script>
+
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div><!-- /.main-content -->
+			</div><!-- /.main-container-inner -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+
+
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+		</script>
+
+		<script type="text/javascript">
+			if("ontouchend" in document) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+		<script src="assets/js/bootstrap.min.js"></script>
+		<script src="assets/js/typeahead-bs2.min.js"></script>
+
+		<!-- page specific plugin scripts -->
+
+		<script src="assets/js/fuelux/data/fuelux.tree-sampledata.js"></script>
+		<script src="assets/js/fuelux/fuelux.tree.min.js"></script>
+
+		<!-- ace scripts -->
+
+		<script src="assets/js/ace-elements.min.js"></script>
+		<script src="assets/js/ace.min.js"></script>
+
+		<!-- inline scripts related to this page -->
+
+		<script type="text/javascript">
+			jQuery(function($){
+
+		$('#tree1').ace_tree({
+			dataSource: treeDataSource ,
+			multiSelect:true,
+			loadingHTML:'<div class="tree-loading"><i class="icon-refresh icon-spin blue"></i></div>',
+			'open-icon' : 'icon-minus',
+			'close-icon' : 'icon-plus',
+			'selectable' : true,
+			'selected-icon' : 'icon-ok',
+			'unselected-icon' : 'icon-remove'
+		});
+
+		$('#tree2').ace_tree({
+			dataSource: treeDataSource2 ,
+			loadingHTML:'<div class="tree-loading"><i class="icon-refresh icon-spin blue"></i></div>',
+			'open-icon' : 'icon-folder-open',
+			'close-icon' : 'icon-folder-close',
+			'selectable' : false,
+			'selected-icon' : null,
+			'unselected-icon' : null
+		});
+
+});
+		</script>
+		<script type="text/javascript" src="assets/js/cookie.js"></script>
+		<script type="text/javascript" src="assets/js/logout.js"></script>
+		<script type="text/javascript">
+            $(function(){
+                $("#adminName").text(getCookie("adminName"));
+            });
+		</script>
+</body>
+</html>
