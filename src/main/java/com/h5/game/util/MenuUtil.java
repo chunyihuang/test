@@ -21,8 +21,8 @@ public class MenuUtil {
 		int status=0;
 		
 		//System.out.println("菜单："+jsonMenu);
-		//String path="https://api.weixin.qq.com/cgi-bin/menu/create?access_token="+TokenThread.access_token.getAccess_token();
-		String path = "";
+		String path="https://api.weixin.qq.com/cgi-bin/menu/create?access_token=HhAfqOLUwE-xq7wo3W8-hmASKsOYEfZ2bLlvReqiWhRvaC5O8BnljQ9NHI_Bem4KbFJvJ4I-AHzURa-P19jHTeunUC5aiPUO300kWkufqjd3e8O4zCzWajZZh-66UdkBCJBcAEARYQ";
+		//String path = "";
 		try {
 			URL url=new URL(path);
 			HttpURLConnection http = (HttpURLConnection)url.openConnection();
@@ -57,15 +57,15 @@ public class MenuUtil {
 	 * */
 	public static Menu getMenu(){
 		//预约挂号
-		String yygh="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx3e4a89adbc62b1e9&redirect_uri=http://www.jiaqiankun.site/imessage/wechat/event/yygh.html&response_type=code&scope=snsapi_base&state=0533_0001";
+		String yygh="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc5f6a8538f04183c&redirect_uri=http://www.jiaqiankun.site/imessage/wechat/event/yygh.html&response_type=code&scope=snsapi_base&state=0533_0001";
 		//我的挂号
-		String wdgh="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx3e4a89adbc62b1e9&redirect_uri=http://www.jiaqiankun.site/imessage/wechat/event/zyfy.html&response_type=code&scope=snsapi_base&state=0531_819";
+		String wdgh="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc5f6a8538f04183c&redirect_uri=http://www.jiaqiankun.site/imessage/wechat/event/zyfy.html&response_type=code&scope=snsapi_base&state=0531_819";
 		//门诊缴费
-		String mzjf="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx3e4a89adbc62b1e9&redirect_uri=http://www.jiaqiankun.site/imessage/wechat/event/zyfy.html&response_type=code&scope=snsapi_base&state=0531_819";
+		String mzjf="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc5f6a8538f04183c&redirect_uri=http://www.jiaqiankun.site/imessage/wechat/event/zyfy.html&response_type=code&scope=snsapi_base&state=0531_819";
 		//住院押金补缴
-		String zyyj="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx3e4a89adbc62b1e9&redirect_uri=http://www.jiaqiankun.site/imessage/wechat/event/zyfy.html&response_type=code&scope=snsapi_base&state=0531_819";
+		String zyyj="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc5f6a8538f04183c&redirect_uri=http://www.jiaqiankun.site/imessage/wechat/event/zyfy.html&response_type=code&scope=snsapi_base&state=0531_819";
 		//我的报告
-		String wdbg="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx3e4a89adbc62b1e9&redirect_uri=http://www.jiaqiankun.site/imessage/wechat/event/wdbg.html&response_type=code&scope=snsapi_base&state=0531_819";
+		String wdbg="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc5f6a8538f04183c&redirect_uri=http://www.jiaqiankun.site/imessage/wechat/event/wdbg.html&response_type=code&scope=snsapi_base&state=0531_819";
 		
 		CommonButton cb_1 = new CommonButton();
 		cb_1.setKey("yyjs");

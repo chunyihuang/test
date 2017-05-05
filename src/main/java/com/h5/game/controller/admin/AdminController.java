@@ -40,7 +40,7 @@ public class AdminController extends BaseController{
     private GameTypeService gameTypeService;
 
     //登录
-    @RequestMapping(value = "/login")
+    @RequestMapping(value = "/login",method = RequestMethod.GET)
     @ResponseBody
     public Map<String,Object> login(@Validate String userName,@Validate String password, HttpServletRequest request){
         Map<String,Object> map = buildReturnMap(false,"");
@@ -77,7 +77,7 @@ public class AdminController extends BaseController{
 
 
     //后台用户列表
-    @RequestMapping(value = "/listAdmins")
+    @RequestMapping(value = "/listAdmins" ,method = RequestMethod.GET)
     @ResponseBody
     public Map<String,Object> listAdmins(String userName,String realName,Integer page,Integer rows){
         PageResults pageResults = adminService.listAdmins(page,rows,userName,realName);
@@ -88,37 +88,43 @@ public class AdminController extends BaseController{
         }else {
             return buildReturnMap(false,"没有查询到任何数据");
         }
-
      }
 
+
     //删除后台用户
-    @RequestMapping(value = "/deleteAdmin")
+    @RequestMapping(value = "/deleteAdmin",method = RequestMethod.POST)
     @ResponseBody
-    public Map<String,Object> deleteAdmin(@Validate Integer operatorId,@Validate Integer id){
-        //判断用户是不是管理员
-         Admin operator = adminService.getAdminById(operatorId);
+    public Map<String,Object> deleteAdmin(@Validate Integer id,HttpSession session){
+
+         Admin operator = authService.getAdmin(session);
          if(null != operator) {
+             //判断用户是不是管理员
              if (operator.getRole().getId() == 1){
                  if (adminService.removeAdmin(id)) {
                      return buildReturnMap(true, "");
                  } else return buildReturnMap(false, "删除失败！");
-             }
+             }else return buildReturnMap(false, "无此权限！");
+         }else {
+             return buildReturnMap(false, "检测到您的session失效！");
          }
-        return buildReturnMap(false, "无此权限！");
+
 
     }
 
     //添加后台用户
     @RequestMapping(value = "/addAdmin")
     @ResponseBody
-    public Map<String,Object> addAdmin(@Validate Admin admin){
-        //判断用户是不是管理员
-        if(admin.getRole().getId() != 1){
-            return buildReturnMap(false,"无此权限！");
+    public Map<String,Object> addAdmin(@Validate Admin admin,Integer roleId,HttpSession session){
+        Admin operator = authService.getAdmin(session);
+        if(null != operator) {
+            //判断用户是不是管理员
+            if (operator.getRole().getId() == 1) {
+                return adminService.saveOrchangeAdmin(admin,roleId);
+            } else return buildReturnMap(false, "没有权限！");
+        }else {
+            return buildReturnMap(false, "检测到您的session失效！");
         }
-        if(adminService.removeAdmin(admin.getId())){
-            return buildReturnMap(true,"");
-        }else return buildReturnMap(false,"删除失败！");
+
     }
 
     @RequestMapping(value = "/listUsers",method = RequestMethod.GET)

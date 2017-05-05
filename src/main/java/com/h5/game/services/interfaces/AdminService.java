@@ -5,6 +5,7 @@ import com.h5.game.dao.base.PageResults;
 import com.h5.game.model.bean.Admin;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by 黄春怡 on 2017/3/31.
@@ -22,6 +23,8 @@ public interface AdminService {
     Admin getByUserName(String userName);
 
     Admin getAdminById(Integer id);
+
+    Map saveOrchangeAdmin(Admin admin,Integer roleId);
 
 
 }
