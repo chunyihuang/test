@@ -23,7 +23,7 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-oxm:4.1.8.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-test:4.1.8.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-tx:4.1.8.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-web:4.1.8.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-web:4.3.2.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:4.1.8.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc-portlet:4.1.8.RELEASE" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.38" />

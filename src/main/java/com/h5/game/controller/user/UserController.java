@@ -17,6 +17,7 @@ import com.h5.game.services.interfaces.GameService;
 import com.h5.game.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,6 +31,7 @@ import java.util.Map;
 /**
  * Created by 黄春怡 on 2017/4/7.
  */
+@CrossOrigin(origins = "*", maxAge = 3600)
 @Controller
 @RequestMapping(value = "/player")
 public class UserController extends BaseController{
@@ -40,8 +42,6 @@ public class UserController extends BaseController{
     private AuthService authService;
     @Autowired
     private GameService gameService;
-
-
 
     @RequestMapping(value = "/register",method = RequestMethod.POST)
     @ResponseBody
@@ -138,51 +138,6 @@ public class UserController extends BaseController{
     }
 
 
-
-    @RequestMapping(value = "/getPath",method = RequestMethod.GET)
-    @ResponseBody
-    public Map getPath(String sourcePath,String fileName){
-
-        int fileNum = 0, folderNum = 0;
-        File file = new File(sourcePath);
-        if (file.exists()) {
-            LinkedList<File> list = new LinkedList<File>();
-            File[] files = file.listFiles();
-            for (File file2 : files) {
-                if (file2.isDirectory()) {
-                    System.out.println("文件夹:" + file2.getAbsolutePath());
-                    list.add(file2);
-                    fileNum++;
-                } else {
-                    System.out.println("文件:" + file2.getAbsolutePath());
-                    folderNum++;
-                }
-            }
-            File temp_file;
-            while (!list.isEmpty()) {
-                temp_file = list.removeFirst();
-                files = temp_file.listFiles();
-                for (File file2 : files) {
-                    if (file2.isDirectory()) {
-                        list.add(file2);
-                        fileNum++;
-                    } else {
-                       if(file2.getName().contains(fileName)){
-                           String path = file2.getPath().replaceAll("\\\\","/");
-                           return buildReturnMap(true,path);
-                       }
-                    }
-                }
-            }
-        } else {
-            return buildReturnMap(false,"没有该文件夹");
-        }
-      return buildReturnMap(false,"没有呀");
-
-
-
-    }
-
     @RequestMapping(value = "/getPersonalInfo",method = RequestMethod.GET)
     @ResponseBody
     public Map getPersonalInfo(@Validate Integer id){
@@ -216,5 +171,7 @@ public class UserController extends BaseController{
         return result;
 
     }
+
+
 
 }

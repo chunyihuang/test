@@ -13,6 +13,7 @@ import com.h5.game.model.vo.QueryGameVo;
 import com.h5.game.model.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,6 +24,7 @@ import java.util.Map;
 /**
  * Created by 黄春怡 on 2017/4/7.
  */
+@CrossOrigin(origins = "*", maxAge = 3600)
 @Controller
 @RequestMapping(value = "/manage")
 public class AdminController extends BaseController{
@@ -40,7 +42,7 @@ public class AdminController extends BaseController{
     private GameTypeService gameTypeService;
 
     //登录
-    @RequestMapping(value = "/login",method = RequestMethod.GET)
+    @RequestMapping(value = "/login")
     @ResponseBody
     public Map<String,Object> login(@Validate String userName,@Validate String password, HttpServletRequest request){
         Map<String,Object> map = buildReturnMap(false,"");
@@ -161,8 +163,6 @@ public class AdminController extends BaseController{
         session.invalidate();
         return super.buildReturnMap(true,"注销成功");
     }
-
-
 
 
     //添加分类
