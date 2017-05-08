@@ -26,6 +26,10 @@ public class CommentDaoImpl extends BaseDao implements CommentDao {
 
         Criteria criteria = getSession().createCriteria(zclass.getClass());
 
+        if(null != commentVo.getComment()){
+            criteria.add(Restrictions.eq("comment",commentVo.getComment()));
+        }
+
         if(null != commentVo.getUserId()){
             criteria.add(Restrictions.eq("user.id",commentVo.getUserId()));
         }

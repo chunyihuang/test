@@ -22,6 +22,8 @@ public class CommentVo extends BaseVo {
 
     private String commentInfo;//评论内容
 
+    private Float score;//评分
+
     public Boolean getDownload() {
         return download;
     }
@@ -60,5 +62,13 @@ public class CommentVo extends BaseVo {
 
     public void setCommentInfo(String commentInfo) {
         this.commentInfo = commentInfo;
+    }
+
+    public Float getScore() {
+        return score;
+    }
+
+    public void setScore(Float score) {
+        this.score = score;
     }
 }

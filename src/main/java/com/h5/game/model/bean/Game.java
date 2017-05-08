@@ -31,6 +31,11 @@ public class Game extends BaseBean {
     @ManyToOne(cascade= CascadeType.ALL)
     @JoinColumn(name = "userId",nullable = false)
     private User user;//上传者
+
+    @ManyToOne(cascade= CascadeType.ALL)
+    @JoinColumn(name = "adminId")
+    private Admin checker;//审核者
+
     private String icon;//游戏图标
     private String screen;//游戏启动时候封面
     private String previewPics;//游戏预览图目录
@@ -47,7 +52,9 @@ public class Game extends BaseBean {
     @ManyToOne(cascade= CascadeType.ALL)
     @JoinColumn(name = "gameTagId",nullable = true)
     private GameTag gameTag;//标签
-    private Boolean checked = false;//是否通过审核
+
+    private Integer checked = 2;//是否通过审核(1.通过 2.等待审核 3.审核失败)
+
     private Boolean commended = false;//是否推荐
     private String onlineUrl;//在线试玩入口地址
     private Boolean packageApk = false;//apk是否打包成功
@@ -162,11 +169,11 @@ public class Game extends BaseBean {
         this.gameTag = gameTag;
     }
 
-    public Boolean getChecked() {
+    public Integer getChecked() {
         return checked;
     }
 
-    public void setChecked(Boolean checked) {
+    public void setChecked(Integer checked) {
         this.checked = checked;
     }
 
@@ -232,5 +239,14 @@ public class Game extends BaseBean {
 
     public void setScreen(String screen) {
         this.screen = screen;
+    }
+
+
+    public Admin getChecker() {
+        return checker;
+    }
+
+    public void setChecker(Admin checker) {
+        this.checker = checker;
     }
 }

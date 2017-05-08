@@ -16,7 +16,7 @@ public class QueryGameVo extends BaseVo {
 
     private Integer gameTagId;//标签
 
-    private Boolean checked;//是否通过审核
+    private Integer checked;//审核状态
 
     private Boolean commended;//是否推荐
 
@@ -62,11 +62,11 @@ public class QueryGameVo extends BaseVo {
         this.gameTagId = gameTagId;
     }
 
-    public Boolean getChecked() {
+    public Integer getChecked() {
         return checked;
     }
 
-    public void setChecked(Boolean checked) {
+    public void setChecked(Integer checked) {
         this.checked = checked;
     }
 

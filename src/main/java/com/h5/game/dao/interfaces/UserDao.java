@@ -12,7 +12,6 @@ import com.h5.game.model.vo.UserVo;
  */
 public interface UserDao extends IBaseDao {
     User getByUserName(String userName);
-
     PageResults pageUsers(String user, String email, String wechat, Integer page, Integer rows);
     PageResults pageUsers(UserVo userVo, Integer page, Integer rows);
 

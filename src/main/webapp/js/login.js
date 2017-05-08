@@ -3,7 +3,7 @@
  * 登录验证类
  */
 var login = {
-	_input: ["userName","password","re_password","email"],
+	_input: ["userName","password"],
 
 	inputVerify: function(i, m){
 		if(arguments.length === 1){

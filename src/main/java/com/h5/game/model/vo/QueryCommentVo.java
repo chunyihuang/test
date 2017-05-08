@@ -13,6 +13,7 @@ public class QueryCommentVo extends BaseVo{
     private Integer userId;//关联用户
     private String uploadDate;//上传日期
     private Boolean comment;//是否填写评论
+    private Float score;//评分
 
     public Boolean getComment() {
         return comment;
@@ -60,5 +61,13 @@ public class QueryCommentVo extends BaseVo{
 
     public void setUploadDate(String uploadDate) {
         this.uploadDate = uploadDate;
+    }
+
+    public Float getScore() {
+        return score;
+    }
+
+    public void setScore(Float score) {
+        this.score = score;
     }
 }

@@ -1,30 +1,25 @@
 package com.h5.game.controller.admin;
 
-import com.alibaba.fastjson.support.odps.udf.CodecCheck;
 import com.h5.game.controller.BaseController;
 import com.h5.game.dao.base.PageResults;
 import com.h5.game.model.bean.*;
 import com.h5.game.services.interfaces.*;
 import com.h5.game.common.tools.BaseUtil;
-
 import com.h5.game.common.tools.validate.annotations.RequestValidate;
 import com.h5.game.common.tools.validate.annotations.Validate;
-import com.h5.game.model.vo.QueryGameVo;
-import com.h5.game.model.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Created by 黄春怡 on 2017/4/7.
  */
-@CrossOrigin(origins = "*", maxAge = 3600)
 @Controller
 @RequestMapping(value = "/manage")
 public class AdminController extends BaseController{
@@ -42,7 +37,7 @@ public class AdminController extends BaseController{
     private GameTypeService gameTypeService;
 
     //登录
-    @RequestMapping(value = "/login")
+    @RequestMapping(value = "/login",method = RequestMethod.GET)
     @ResponseBody
     public Map<String,Object> login(@Validate String userName,@Validate String password, HttpServletRequest request){
         Map<String,Object> map = buildReturnMap(false,"");
@@ -77,6 +72,45 @@ public class AdminController extends BaseController{
         return map;
     }
 
+    //注销
+    @RequestMapping(value = "/loginOut")
+    @ResponseBody
+    public Map<String,Object> loginOut(HttpSession session){
+        session.invalidate();
+        return super.buildReturnMap(true,"注销成功");
+    }
+
+    /***超级管理员权限*********/
+
+    //获取系统配置信息
+    @RequestMapping(value = "/listConfig" ,method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String,Object> listAdmins(){
+        Map result = buildReturnMap(false,"");
+        List configs = adminService.listConfig();
+        if(null != configs && configs.size()>0){
+            result.put("status",true);
+            result.put("date",configs);
+        }else {
+            result.put("reason","没有找到任何配置");
+        }
+        return result;
+    }
+
+    //更改或添加系统配置信息
+    @RequestMapping(value = "/addOrChangeConfig" ,method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,Object> addOrChangeConfig(){
+        Map result = buildReturnMap(false,"");
+        List configs = adminService.listConfig();
+        if(null != configs && configs.size()>0){
+            result.put("status",true);
+            result.put("date",configs);
+        }else {
+            result.put("reason","没有找到任何配置");
+        }
+        return result;
+    }
 
     //后台用户列表
     @RequestMapping(value = "/listAdmins" ,method = RequestMethod.GET)
@@ -129,13 +163,19 @@ public class AdminController extends BaseController{
 
     }
 
+
+
+
+    /********************普通管理员权限*************************/
+
     @RequestMapping(value = "/listUsers",method = RequestMethod.GET)
     @ResponseBody
     public Map<String,Object> listUsers(String user,String email,String wechat, Integer page, Integer rows){
         PageResults pageResults = userService.pageUsers(user,email,wechat,page,rows);
         if(null != pageResults && pageResults.getTotalCount() >0){
             Map result = buildReturnMap(true,"");
-            result.put("rows",pageResults.getData());
+            result.put("data",pageResults.getData());
+            result.put("count",pageResults.getTotalCount());
             return result;
         }else {
             return buildReturnMap(false,"没有查询到任何数据");
@@ -152,19 +192,6 @@ public class AdminController extends BaseController{
     }
 
 
-
-
-    //系统配置
-
-    //注销
-    @RequestMapping(value = "/loginOut")
-    @ResponseBody
-    public Map<String,Object> loginOut(HttpSession session){
-        session.invalidate();
-        return super.buildReturnMap(true,"注销成功");
-    }
-
-
     //添加分类
     @RequestMapping(value = "/addGameType")
     @ResponseBody
@@ -172,7 +199,7 @@ public class AdminController extends BaseController{
         return gameTypeService.saveOrUpdateUser(gameType);
     }
 
-    //更改游戏
+    //更改游戏(主要是推荐、审核)
     @RequestMapping(value = "/checkGame")
     @ResponseBody
     public Map<String,Object> checkGame(Game game){
@@ -183,7 +210,6 @@ public class AdminController extends BaseController{
     @RequestMapping(value = "/removeComment")
     @ResponseBody
     public Map<String,Object> removeComment(Comment comment){
-
         if(gameService.removeComment(comment)){
             return buildReturnMap(true,"删除成功！");
         }else {
@@ -194,12 +220,13 @@ public class AdminController extends BaseController{
     //删除游戏
     @RequestMapping(value = "/removeGame",method = RequestMethod.POST)
     @ResponseBody
-    public Map removeGame(@Validate Integer id) {
-        Boolean result = gameService.removeGame(id);
+    public Map removeGame(@Validate Integer gameId) {
+        Boolean result = gameService.removeGame(gameId);
         if(result){
             return buildReturnMap(true,"删除成功！");
         }else return buildReturnMap(false,"删除失败！");
     }
+
 
 
 

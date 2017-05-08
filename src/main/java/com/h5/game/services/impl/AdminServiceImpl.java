@@ -3,14 +3,17 @@ package com.h5.game.services.impl;
 import com.h5.game.common.constants.Constants;
 import com.h5.game.dao.base.PageResults;
 import com.h5.game.dao.interfaces.RoleDao;
+import com.h5.game.dao.interfaces.SystemConfigDao;
 import com.h5.game.model.bean.Admin;
 import com.h5.game.dao.interfaces.AdminDao;
 import com.h5.game.model.bean.Role;
+import com.h5.game.model.bean.SystemConfig;
 import com.h5.game.model.bean.User;
 import com.h5.game.services.interfaces.AdminService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
 import java.util.HashMap;
@@ -24,6 +27,9 @@ import java.util.Map;
 @Service
 public class AdminServiceImpl implements AdminService {
     private Logger logger = Logger.getLogger(this.getClass());
+
+    @Autowired
+    private SystemConfigDao systemConfigDao;
 
     @Autowired
     private AdminDao adminDao;
@@ -96,10 +102,46 @@ public class AdminServiceImpl implements AdminService {
             result.put("obj",a);
             result.put("reason","修改成功！");
             return result;
-
         } else {
             result.put("status",true);
             result.put("obj",a);
+            result.put("reason","添加成功！");
+            return result;
+        }
+    }
+    public List listConfig(){
+        return systemConfigDao.findAllList(SystemConfig.class);
+    }
+
+    @Transactional
+    public Map saveOrUpdateUser(SystemConfig systemConfig) {
+
+        Map<String ,Object>result = new HashMap<String ,Object>();
+        boolean isChange = false;
+        try {
+            if (systemConfig.getId() != null) {
+                isChange = true;//如果存在id,则表示为修改
+                if (systemConfigDao.getById(systemConfig.getId()) == null) {
+                    result.put("status",false);
+                    result.put("reason","对象不存在");
+                    return result;
+                }
+            }
+            systemConfigDao.saveOrUpdate(systemConfig);
+        } catch (Exception e) {
+            logger.error("发生错误", e.getCause());
+            result.put("status",true);
+            result.put("reason","操作失败！");
+        }
+        if (isChange == true) {
+            result.put("status",true);
+            result.put("obj",systemConfig);
+            result.put("reason","修改成功！");
+            return result;
+
+        } else {
+            result.put("status",true);
+            result.put("obj",systemConfig);
             result.put("reason","添加成功！");
             return result;
 

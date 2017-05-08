@@ -2,6 +2,7 @@ package com.h5.game.services.impl;
 
 
 import com.h5.game.dao.base.PageResults;
+import com.h5.game.dao.interfaces.UserDao;
 import com.h5.game.model.bean.Comment;
 import com.h5.game.model.bean.Game;
 import com.h5.game.model.bean.GameType;
@@ -52,15 +53,19 @@ public class GameServiceImpl implements GameService {
     @Autowired
     private CommentDao commentDao;
 
+    @Autowired
+    private UserDao userDao;
+
 
     @Transactional
     public Map uploadGame(GameVo gameVo,String rootDir, User user){
-
         Map result = new HashedMap();
         Game game = new Game();
         Long timestamp = new Date().getTime();//当前上传的文件系统生成的唯一目录
-        String zipDir = rootDir+"zip";
-        String unzipDir = rootDir+"unzip";
+        String zipDir = "d:\\game\\zip";
+        String unzipDir = rootDir+"game\\unzip";
+        String iconPath = rootDir + "game\\icon";
+        String screenPath = rootDir + "game\\screen";
        //解压游戏包
         if (!gameVo.getZip().isEmpty()) {
             File newUploadFile = new File(zipDir, String.valueOf(timestamp));
@@ -74,22 +79,25 @@ public class GameServiceImpl implements GameService {
                     return result;
                 }
             }
-            //利用当前时间戳生成唯一的文件解压目录
            //解压后的目录
             String unzipDirectory = unzipDir + "\\" + String.valueOf(timestamp);
+            int mark = rootDir.lastIndexOf("\\");
                 //解压缩
                 try {
-                    if(runbat("E:\\winrar\\unzip.bat",newUploadFile.getPath(),unzipDir)){
-                        String indexPath = getPath(unzipDirectory,gameVo.getIndexName()).replaceAll("\\\\","/").replaceFirst("D:/idea/game/web/target/web-1.0-SNAPSHOT","");
+                    if(runbat("e:\\winrar\\unzip.bat",newUploadFile.getPath(),unzipDir)){
+                        String indexPath = getPath(unzipDirectory,gameVo.getIndexName()).substring(mark).replaceAll("\\\\","/");
                         if(null != indexPath){
-                            System.out.println("indexPath-----"+indexPath);
                             game.setOnlineUrl(indexPath);//-->设置在线试玩入口地址说
                         }
                         String fileSize = caculateFileSize(new File(unzipDir));
                         game.setSize(fileSize);//游戏大小
                         game.setGameName(gameVo.getGameName());//游戏名称
                         game.setSummary(gameVo.getSummary());//游戏简介
-                        game.setUser(user);//上传者
+                        if(null == user){
+                            User uu = (User) userDao.getById(1);
+                            game.setUser(uu);
+                        }
+                        else game.setUser(user); //上传者
                         game.setVersion(gameVo.getVersion());//游戏版本
                     }
                 }catch (Exception e){
@@ -101,20 +109,20 @@ public class GameServiceImpl implements GameService {
                 //游戏类型
                 if(null != gameVo.getGameTypeId()){
                     GameType gameType = (GameType) gameTypeDao.getById(gameVo.getGameTypeId());
-                    if(null != gameType){
+                    if(null != gameType) {
                         game.setGameType(gameType);
                     }
                 }
                 //为每个游戏的解压文件创建一个res目录，存放apk icon 封面 预览图
-                String res = createDir(unzipDirectory,"res").getPath()+"\\";
-                String iconPath = createDir(res,"icon").getPath()+"\\";
-                String screenPath = createDir(res,"screen").getPath()+"\\";
-                String previewPicPath = createDir(res,"preview").getPath()+"\\";
+                //String res = createDir(unzipDirectory,"res").getPath()+"\\";
+                //String iconPath = createDir(res,"icon").getPath()+"\\";
+                //String screenPath = createDir(res,"screen").getPath()+"\\";
+                //String previewPicPath = createDir(res,"preview").getPath()+"\\";
                 if (null != gameVo.getIcon() && !gameVo.getIcon().isEmpty()) {
                     try {
                         File icon = new File(iconPath,gameVo.getIcon().getOriginalFilename());
                         gameVo.getIcon().transferTo(icon);
-                        game.setIcon(icon.getPath().replaceAll("\\\\","/").replaceFirst("D:/idea/game/web/target/web-1.0-SNAPSHOT",""));//游戏图标地址
+                        game.setIcon(icon.getPath().substring(mark).replaceAll("\\\\","/"));//游戏图标地址.replaceFirst(rootDir,"").replaceAll("\\\\","/")
                     }catch (Exception e){
                         e.printStackTrace();
                         result.put("status",false);
@@ -122,15 +130,15 @@ public class GameServiceImpl implements GameService {
                         return result;
                     }
                 }else {
-                    fileCopy(rootDir+"/res-default/icon/android/icon.png",iconPath+"icon.png");
-                    game.setIcon((iconPath.replaceAll("\\\\","/")+"/"+"icon.png").replaceFirst("D:/idea/game/web/target/web-1.0-SNAPSHOT",""));//游戏图标地址
+                    //fileCopy(rootDir+"/res-default/icon/android/icon.png",iconPath+"icon.png");
+                    game.setIcon("/game/res-default/icon/icon.png");//游戏图标地址
                 }
 
                 if (null != gameVo.getScreen() && !gameVo.getScreen().isEmpty()) {
                     try {
                         File screen = new File(screenPath,gameVo.getScreen().getOriginalFilename());
                         gameVo.getScreen().transferTo(screen);
-                        game.setScreen(screen.getPath().replaceAll("\\\\","/").replaceFirst("D:/idea/game/web/target/web-1.0-SNAPSHOT",""));//游戏封面地址
+                        game.setScreen(screen.getPath().substring(mark).replaceAll("\\\\","/"));//游戏封面地址.replaceFirst( rootDir,"").replaceAll("\\\\","/")
                     }catch (Exception e){
                         e.printStackTrace();
                         result.put("status",false);
@@ -138,11 +146,11 @@ public class GameServiceImpl implements GameService {
                         return result;
                     }
                 }else {
-                    fileCopy(rootDir+"/res-default/screen/android/screen.png","screen.png");
-                    game.setScreen((screenPath.replaceAll("\\\\","/")+"/"+"screen.png").replaceFirst("D:/idea/game/web/target/web-1.0-SNAPSHOT",""));//游戏封面地址
+                    //fileCopy(rootDir+"/res-default/screen/android/screen.png","screen.png");
+                    game.setScreen("/game/res-default/screen/icon.png");//游戏封面地址
                 }
                 //游戏预览图
-                if (null != gameVo.getPreviewPics() && gameVo.getPreviewPics().length > 0 ) {
+                /*if (null != gameVo.getPreviewPics() && gameVo.getPreviewPics().length > 0 ) {
                     for(CommonsMultipartFile cmf:gameVo.getPreviewPics()){
                         File previewPic = new File(previewPicPath,cmf.getOriginalFilename());
                         try {
@@ -156,11 +164,10 @@ public class GameServiceImpl implements GameService {
                     }
 
                 }else {
-                    fileCopy(rootDir+"/res-default/previewPics/android/preview.png",previewPicPath);
+                   // fileCopy(rootDir+"/res-default/previewPics/android/preview.png",previewPicPath);
                 }
-                game.setPreviewPics(previewPicPath.replaceAll("\\\\","/").replaceFirst("D:/idea/game/web/target/web-1.0-SNAPSHOT",""));//游戏预览图
-
-
+            game.setPreviewPics(previewPicPath);//游戏预览图.replaceFirst(rootDir,"").replaceAll("\\\\","/")
+            */
             gameDao.save(game);
         }else {
             result.put("status",false);

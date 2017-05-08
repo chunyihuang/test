@@ -58,21 +58,24 @@ public class UserServiceImpl implements UserService {
             u.setEmail(userVo.getEmail());
             u.setWechat(userVo.getWechat());
             //保存用户头像
-            if(null != userVo.getAvatar() && !userVo.getAvatar().isEmpty()){
-                if(null != session.getAttribute(Constants.SESSION_USER)){
-                        String path = session.getServletContext().getRealPath("/WEB-INF/userAvatar/");
-                        File avatar = new File(path, userVo.getUser());
-                        try {
-                            userVo.getAvatar().transferTo(avatar);
-                        }catch (Exception e) {
-                            logger.error("发生错误", e.getCause());
-                            result.put("status",false);
-                            result.put("reason","头像上传失败！");
-                            return result;
-                        }
-                        u.setAvatar(avatar.getPath());
+            if(null != userVo.getAvatar() && !userVo.getAvatar().isEmpty()) {
+                if (null != session.getAttribute(Constants.SESSION_USER)) {
+                    String path = session.getServletContext().getRealPath("/WEB-INF/avater/");
+                    File avatar = new File(path, userVo.getUser());
+                    try {
+                        userVo.getAvatar().transferTo(avatar);
+                    } catch (Exception e) {
+                        logger.error("发生错误", e.getCause());
+                        result.put("status", false);
+                        result.put("reason", "头像上传失败！");
+                        return result;
                     }
+                    int mark = avatar.getPath().lastIndexOf("\\");
+                    u.setAvatar(avatar.getPath().substring(mark).replaceAll("\\\\","/"));
                 }
+            }else {
+                u.setAvatar("/WEB-INF/avater/avater.jpg");
+            }
             userDao.saveOrUpdate(u);
         } catch (Exception e) {
             logger.error("发生错误", e.getCause());

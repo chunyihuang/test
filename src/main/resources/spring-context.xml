@@ -105,10 +105,12 @@
     </aop:config>
 
     <!-- 拦截用户对用户信息的操作 -->
+    <!--
     <aop:config>
         <aop:pointcut id="userPointCut" expression="execution(public * com.h5.game.controller.user.*.*(..))"/>
         <aop:advisor pointcut-ref="userPointCut" advice-ref="userControllerInterceptor"/>
     </aop:config>
+    -->
 
     <!-- 用于进行数据过滤的拦截器 -->
     <aop:config>

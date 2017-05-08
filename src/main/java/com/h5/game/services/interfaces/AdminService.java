@@ -3,6 +3,7 @@ package com.h5.game.services.interfaces;
 
 import com.h5.game.dao.base.PageResults;
 import com.h5.game.model.bean.Admin;
+import com.h5.game.model.bean.SystemConfig;
 
 import java.util.List;
 import java.util.Map;
@@ -25,6 +26,10 @@ public interface AdminService {
     Admin getAdminById(Integer id);
 
     Map saveOrchangeAdmin(Admin admin,Integer roleId);
+
+    List listConfig();
+
+    Map saveOrUpdateUser(SystemConfig systemConfig);
 
 
 }

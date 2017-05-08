@@ -10,7 +10,6 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 public class UserVo extends BaseVo{
 
     private Integer id;
-
     @Validate
     private String user;
 
